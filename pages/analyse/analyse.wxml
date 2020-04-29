@@ -6,7 +6,7 @@
 
 <view class="line"></view>
 
-<picker bindchange="genderMethod" value="{{index}}" range="{{genderArray}}">
+<picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
   <view class='flex-wrp-row item'>
     <view class='item-left flex-wrp-row'>
       <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
@@ -22,42 +22,48 @@
 
 <view class="line"></view>
 
-<view class='flex-wrp-row item' bindtap='ageMethod'>
-  <view class='item-left flex-wrp-row'>
-    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
-    <text decode="{{true}}">&nbsp;&nbsp;年龄</text>
+<picker mode="multiSelector" bindchange="ageMethod" value="{{ageIndex}}" range="{{ageArray}}">
+  <view class='flex-wrp-row item'>
+    <view class='item-left flex-wrp-row'>
+      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <text decode="{{true}}">&nbsp;&nbsp;年龄</text>
+    </view>
+    <view class='item-right flex-wrp-row'>
+      <text decode="{{true}}">{{age}}&nbsp;&nbsp;</text>
+      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+    </view>
   </view>
-  <view class='item-right flex-wrp-row'>
-    <text decode="{{true}}">{{age}}&nbsp;&nbsp;</text>
-    <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
-  </view>
-</view>
+</picker>
 
 <view class="line"></view>
 
-<view class='flex-wrp-row item' bindtap='heightMethod'>
-  <view class='item-left flex-wrp-row'>
-    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
-    <text decode="{{true}}">&nbsp;&nbsp;身高</text>
+<picker mode="multiSelector" bindchange="heightMethod" value="{{heightIndex}}" range="{{heightArray}}">
+  <view class='flex-wrp-row item'>
+    <view class='item-left flex-wrp-row'>
+      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <text decode="{{true}}">&nbsp;&nbsp;身高</text>
+    </view>
+    <view class='item-right flex-wrp-row'>
+      <text decode="{{true}}">{{height}}&nbsp;&nbsp;</text>
+      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+    </view>
   </view>
-  <view class='item-right flex-wrp-row'>
-    <text decode="{{true}}">{{height}}&nbsp;&nbsp;</text>
-    <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
-  </view>
-</view>
+</picker>
 
 <view class="line"></view>
 
-<view class='flex-wrp-row item' bindtap='weightMethod'>
-  <view class='item-left flex-wrp-row'>
-    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
-    <text decode="{{true}}">&nbsp;&nbsp;体重</text>
+<picker mode="multiSelector" bindchange="weightMethod" value="{{weightIndex}}" range="{{weightArray}}">
+  <view class='flex-wrp-row item'>
+    <view class='item-left flex-wrp-row'>
+      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <text decode="{{true}}">&nbsp;&nbsp;体重</text>
+    </view>
+    <view class='item-right flex-wrp-row'>
+      <text decode="{{true}}">{{weight}}&nbsp;&nbsp;</text>
+      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+    </view>
   </view>
-  <view class='item-right flex-wrp-row'>
-    <text decode="{{true}}">{{weight}}&nbsp;&nbsp;</text>
-    <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
-  </view>
-</view>
+</picker>
 
 <view class="line"></view>
 
