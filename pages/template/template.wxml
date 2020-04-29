@@ -1,0 +1,16 @@
+<template name="cooks">
+  <block wx:for="{{array}}" wx:key="key">
+    <view class="item" bindtap="seeDetail" id="0">
+      <image src="{{item.image}}" style="width:58px;height:58px;"></image>
+
+      <view class="desc">
+        <view class="title">{{item.name}} </view>
+        <view class="count">
+          <view>卡路里：{{item.calorie}}千卡</view>
+          <view class="liulan">相似度：{{item.probability}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="hr2"></view>
+  </block>
+</template>

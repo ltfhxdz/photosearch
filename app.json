@@ -1,13 +1,52 @@
 {
-  "pages":[
+  "pages": [
+    "pages/analyse/analyse",
+    "pages/breakfast/breakfast",
+    "pages/search/search",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/me/me",
+    "pages/lunch/lunch",
+    "pages/snack/snack",
+    "pages/dinner/dinner"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "美食瘦",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "blue",
+    "backgroundColor": "#eeeeee",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/breakfast/breakfast",
+        "text": "早餐"
+      },
+      {
+        "pagePath": "pages/lunch/lunch",
+        "text": "午餐"
+      },
+      {
+        "pagePath": "pages/dinner/dinner",
+        "text": "晚餐"
+      },
+      {
+        "pagePath": "pages/snack/snack",
+        "text": "加餐"
+      },
+      {
+        "pagePath": "pages/analyse/analyse",
+        "text": "分析"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

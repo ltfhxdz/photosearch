@@ -1,0 +1,82 @@
+<view class='flex-wrp-row item'>
+  <view class='item-left flex-wrp-row'>
+    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+    <text decode="{{true}}">&nbsp;&nbsp;{{userInfo.nickName}}</text>
+  </view>
+</view>
+
+<view class="line"></view>
+
+
+<picker bindchange="genderMethod" value="{{index}}" range="{{array}}">
+  <view class='flex-wrp-row item'>
+    <view class='item-left flex-wrp-row'>
+      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <text decode="{{true}}">&nbsp;&nbsp;性别</text>
+    </view>
+
+    <view class='item-right flex-wrp-row'>
+      <text decode="{{true}}" wx:if='{{userInfo.gender==1}}'>男&nbsp;&nbsp;</text>
+      <text decode="{{true}}" wx:if='{{userInfo.gender!=1}}'>女&nbsp;&nbsp;</text>
+      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+    </view>
+  </view>
+
+  <view>
+    当前选择：{{array[index]}}
+  </view>
+</picker>
+
+<view class="line"></view>
+
+<view class='flex-wrp-row item' bindtap='ageMethod'>
+  <view class='item-left flex-wrp-row'>
+    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+    <text decode="{{true}}">&nbsp;&nbsp;年龄</text>
+  </view>
+  <view class='item-right flex-wrp-row'>
+    <text decode="{{true}}">{{age}}&nbsp;&nbsp;</text>
+    <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+  </view>
+</view>
+
+<view class="line"></view>
+
+<view class='flex-wrp-row item' bindtap='heightMethod'>
+  <view class='item-left flex-wrp-row'>
+    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+    <text decode="{{true}}">&nbsp;&nbsp;身高</text>
+  </view>
+  <view class='item-right flex-wrp-row'>
+    <text decode="{{true}}">{{height}}&nbsp;&nbsp;</text>
+    <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+  </view>
+</view>
+
+<view class="line"></view>
+
+<view class='flex-wrp-row item' bindtap='weightMethod'>
+  <view class='item-left flex-wrp-row'>
+    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+    <text decode="{{true}}">&nbsp;&nbsp;体重</text>
+  </view>
+  <view class='item-right flex-wrp-row'>
+    <text decode="{{true}}">{{weight}}&nbsp;&nbsp;</text>
+    <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+  </view>
+</view>
+
+<view class="line"></view>
+
+<view class='flex-wrp-row item'>
+  <view class='item-left flex-wrp-row'>
+    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+    <text decode="{{true}}">&nbsp;&nbsp;基础代谢</text>
+  </view>
+  <view class='item-right flex-wrp-row'>
+    <text decode="{{true}}">{{basic}}&nbsp;&nbsp;</text>
+    <image class='icon-right'></image>
+  </view>
+</view>
+
+<view class="line"></view>
