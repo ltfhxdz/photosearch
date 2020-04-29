@@ -3,13 +3,10 @@ const app = getApp()
 
 Page({
   data: {
-    array: ['男', '女'],
+    array: ['女', '男'],
     index: 0,
     userInfo: {},
-    //默认值
-    age: 47,
-    height: 177,
-    weight: 171
+
   },
 
   ageMethod: function () {
@@ -24,67 +21,56 @@ Page({
     console.log('enter weight method');
   },
 
-  getConfig: function(name) {
-    // wx.removeStorageSync(key);
-    var value = wx.getStorageSync(name);
-    console.log('value:' + value);
-    if (value == '') {
-      console.log('value == null');
-    } else {
-      console.log('value != null');
-    }
-  },
-
   genderMethod: function (e) {
-    console.log('enter gender method');
-    console.log('picker发送选择改变，携带值为', e.detail.value);
-    let gender = '男';
     if (e.detail.value == 0) {
-      gender = '男';
+      wx.setStorageSync('gender', '女');
     } else {
-      gender = '女'
+      wx.setStorageSync('gender', '男');
     }
+    this.setBasic();
     this.setData({
       index: e.detail.value,
-      gender: gender
+      gender: wx.getStorageSync('gender'),
+      basic: wx.getStorageSync('basic') + '千卡'
     })
   },
 
+  setBasic(){
+    let gender = wx.getStorageSync('gender');
+    let age = wx.getStorageSync('age');
+    let height = wx.getStorageSync('height');
+    let weight = wx.getStorageSync('weight');
+
+    let basic = 0
+    if (gender == '男') {
+      basic = 67 + 13.73 * ((weight / 2).toFixed()) + 5 * height - 6.9 * age
+    } else {
+      basic = 661 + 9.6 * (weight / 2).toFixed() + 1.72 * height - 4.7 * age
+    }
+    basic = basic.toFixed();
+    wx.setStorageSync('basic', basic);
+  },
+
   onLoad: function() {
-    wx.removeStorageSync('height');
-    this.getConfig('height');
+    wx.setStorageSync('gender', '男');
+    wx.setStorageSync('age', 47);
+    wx.setStorageSync('height', 177);
+    wx.setStorageSync('weight', 171);
+    this.setBasic();
 
-    var that = this;
-
-    //获取用户信息
-    wx.getUserInfo({
-      success: function(res) {
-        that.data.userInfo = res.userInfo;
-        console.log(res.userInfo);
-        console.log((that.data.weight / 2).toFixed());
-        let gender = res.userInfo['gender'];
-
-        // 男：67 + 13.73 * 体重 + 5 * 身高 - 6.9 * 年龄
-        // 女：661 + 9.6 * 体重 + 1.72 * 身高 - 4.7 * 年龄
-        let basic = 0
-        if (gender == 1) {
-          basic = 67 + 13.73 * ((that.data.weight / 2).toFixed()) + 5 * (parseInt(that.data.height)) - 6.9 * (parseInt(that.data.age))
-        } else {
-          basic = 661 + 9.6 * ((that.data.weight / 2).toFixed()) + 1.72 * (parseInt(that.data.height)) - 4.7 * (parseInt(that.data.age))
-        }
-        basic = basic.toFixed();
-        let age = that.data.age + '岁';
-        let height = that.data.height + '厘米';
-        let weight = that.data.weight + '斤';
-        let basicStr = basic + '千卡';
-        that.setData({
-          userInfo: that.data.userInfo,
-          age: age,
-          height: height,
-          weight: weight,
-          basic: basicStr
-        })
-      }
+    let index = 0;
+    if (wx.getStorageSync('gender') == '男'){
+      index = 1;
+    }else{
+      index = 0;
+    }
+    this.setData({
+      index: index,
+      gender: wx.getStorageSync('gender'),
+      age: wx.getStorageSync('age') + '岁',
+      height: wx.getStorageSync('height') + '厘米',
+      weight: wx.getStorageSync('weight') + '斤',
+      basic: wx.getStorageSync('basic') + '千卡'
     })
   }
 })

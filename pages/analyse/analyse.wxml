@@ -1,12 +1,10 @@
 <view class='flex-wrp-row item'>
   <view class='item-left flex-wrp-row'>
-    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
-    <text decode="{{true}}">&nbsp;&nbsp;{{userInfo.nickName}}</text>
+    <open-data type="userNickName"></open-data>
   </view>
 </view>
 
 <view class="line"></view>
-
 
 <picker bindchange="genderMethod" value="{{index}}" range="{{array}}">
   <view class='flex-wrp-row item'>
@@ -16,14 +14,9 @@
     </view>
 
     <view class='item-right flex-wrp-row'>
-      <text decode="{{true}}" wx:if='{{userInfo.gender==1}}'>男&nbsp;&nbsp;</text>
-      <text decode="{{true}}" wx:if='{{userInfo.gender!=1}}'>女&nbsp;&nbsp;</text>
+      <text decode="{{true}}">{{gender}}&nbsp;&nbsp;</text>
       <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
     </view>
-  </view>
-
-  <view>
-    当前选择：{{array[index]}}
   </view>
 </picker>
 
