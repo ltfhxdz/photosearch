@@ -3,7 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    array: ['女', '男'],
+    genderArray: ['女', '男'],
     index: 0,
     userInfo: {},
 
@@ -52,10 +52,20 @@ Page({
   },
 
   onLoad: function() {
-    wx.setStorageSync('gender', '男');
-    wx.setStorageSync('age', 47);
-    wx.setStorageSync('height', 177);
-    wx.setStorageSync('weight', 171);
+
+    if (wx.getStorageSync('gender') == ''){
+      wx.setStorageSync('gender', '男');
+    }
+    if (wx.getStorageSync('age') == '') {
+      wx.setStorageSync('age', 47);
+    }
+    if (wx.getStorageSync('height') == '') {
+      wx.setStorageSync('height', 177);
+    }
+    if (wx.getStorageSync('weight') == '') {
+      wx.setStorageSync('weight', 171);
+    }
+    
     this.setBasic();
 
     let index = 0;

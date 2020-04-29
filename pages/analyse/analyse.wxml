@@ -6,7 +6,7 @@
 
 <view class="line"></view>
 
-<picker bindchange="genderMethod" value="{{index}}" range="{{array}}">
+<picker bindchange="genderMethod" value="{{index}}" range="{{genderArray}}">
   <view class='flex-wrp-row item'>
     <view class='item-left flex-wrp-row'>
       <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
