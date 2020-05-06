@@ -1,45 +1,94 @@
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: -99999;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.modalBg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.modalDlg {
+  width: 98%;
+  min-height: 200rpx;
+  max-height: 900rpx;
+  position: relative;
+  z-index: 9999;
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color:black;
+}
 
 .upload {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border:1px solid blue
+  border: 1px solid blue;
 }
 
-.item{
+.item {
   display: flex;
   flex-direction: row;
-  margin-left: 10px;
-  margin-bottom: 5px;
 }
-.desc{
+
+.image {
+  width: 66px;
+  height: 50px;
+}
+
+.desc {
   margin-left: 20px;
   line-height: 30px;
 }
 
-.count{
+.calorie {
   display: flex;
   flex-direction: row;
   font-size: 12px;
-  color: #999999
+  color: #999;
 }
 
-.liulan{
+.probability {
   position: absolute;
-  right: 50px;
+  right: 5px;
 }
 
-.line{
-  height: 2px;
-  background-color: #cccccc;
-  opacity: 0.2;
-
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
 }
-
 
 .item1 {
   color: black;
   font-size: 40rpx;
+}
+
+.item2 {
+  width: 100%;
+  margin-top: 5%;
 }
 
 .item3 {
@@ -50,7 +99,3 @@
   text-align: center;
 }
 
-.item4 {
-  color: black;
-  font-size: 40rpx;
-}

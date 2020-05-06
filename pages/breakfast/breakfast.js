@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: [],
+    show: false,
+    list: [],
   },
 
   upload: function(e) {
@@ -61,7 +62,8 @@ Page({
             }
             console.log(JSON.stringify(result));
             that.setData({
-              array: result
+              list: result,
+              show: true
             })
           }
         })
@@ -69,16 +71,72 @@ Page({
     })
   },
 
+
+  select: function(e) {
+    let xList = [];
+    let breakfast = wx.getStorageSync('breakfast');
+    if (breakfast != "") {
+      let newList = JSON.parse(breakfast);
+      for (let x in newList) {
+        xList.push(newList[x]);
+      }
+    }
+
+    let index = e.currentTarget.dataset.index;
+    let item = this.data.list[index];
+    xList.push(item);
+
+    breakfast = JSON.stringify(xList);
+    wx.setStorageSync('breakfast', breakfast);
+
+    this.setData({
+      show: false,
+      newList: xList
+    })
+  },
+
+
+
+  store: function(e) {
+    console.log('enter store');
+    wx.removeStorageSync('breakfast');
+    this.setData({
+      show: false,
+      newList: []
+    })
+  },
+
+  cancel: function(e) {
+    console.log('enter cancel');
+
+    wx.getStorageInfoSync({
+      success(res) {
+        console.log('-----------------')
+        console.log(res.keys);
+        console.log(res.currentSize);
+        console.log(res.limitSize);
+        console.log('-----------------')
+      }
+    });
+
+    this.setData({
+      show: false
+    })
+  },
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
-    // var array = this.iniData();
-    // console.log("xyz array:" + array);
-    // this.setData({
-    //   array: array
-    // });
+    // wx.removeStorageSync("breakfast");
+    let breakfast = wx.getStorageSync('breakfast');
+    if (breakfast != "") {
+      this.setData({
+        newList:JSON.parse(breakfast)
+      })
+    }
   },
 
   /**
