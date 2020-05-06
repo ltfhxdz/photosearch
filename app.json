@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/analyse/analyse",
     "pages/breakfast/breakfast",
+    "pages/analyse/analyse",
     "pages/search/search",
     "pages/index/index",
     "pages/logs/logs",
@@ -17,10 +17,10 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "black",
-    "selectedColor": "blue",
-    "backgroundColor": "#eeeeee",
-    "position": "bottom",
+    "color": "#FFFFFF",
+    "selectedColor": "#FFA500",
+    "backgroundColor": "#000000",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/breakfast/breakfast",
@@ -31,16 +31,16 @@
         "text": "午餐"
       },
       {
+        "pagePath": "pages/analyse/analyse",
+        "text": "分析"
+      },
+      {
         "pagePath": "pages/dinner/dinner",
         "text": "晚餐"
       },
       {
         "pagePath": "pages/snack/snack",
         "text": "加餐"
-      },
-      {
-        "pagePath": "pages/analyse/analyse",
-        "text": "分析"
       }
     ]
   },

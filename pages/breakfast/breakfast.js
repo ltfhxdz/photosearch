@@ -8,7 +8,7 @@ Page({
     array: [],
   },
 
-  upload: function (e) {
+  upload: function(e) {
     var that = this
     let access_token = '';
     wx.request({
@@ -30,7 +30,7 @@ Page({
       sizeType: ['original', 'compressed'],
       // 可以指定来源是相册还是相机，默认二者都有
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         console.log(tempFilePaths);
@@ -48,15 +48,18 @@ Page({
             'image': base64,
             'top_num': 5
           },
-          success: function (res) {
+          success: function(res) {
             console.log(res.data);
+
             let jsonResult = JSON.parse(res.data);
             let result = jsonResult['result'];
 
             for (var k in result) {
               var food = result[k];
+              food['probability'] = ((parseFloat(food['probability']).toFixed(4)) * 100).toFixed(2) + "%";
               food['image'] = tempFilePaths[0];
             }
+            console.log(JSON.stringify(result));
             that.setData({
               array: result
             })
@@ -69,7 +72,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
     // var array = this.iniData();
     // console.log("xyz array:" + array);
@@ -81,49 +84,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

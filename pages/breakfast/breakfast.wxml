@@ -1,11 +1,18 @@
 <import src="../template/template" />
+
+<view class="line"></view>
+
 <view class="view_parent">
   <view class="item1">
     <button bindtap="upload" style="color:black;background-color:cyan">美食照片</button>
   </view>
 </view>
 
-<view class="hr2"></view>
+
 <view>
   <template is="cooks" data="{{array}}" />
+</view>
+
+<view class="item3">
+  <text class="item2">吃美食，还要瘦</text>
 </view>

@@ -1,6 +1,6 @@
 <template name="cooks">
   <block wx:for="{{array}}" wx:key="key">
-    <view class="item" bindtap="seeDetail" id="0">
+    <view class="item" id="0">
       <image src="{{item.image}}" style="width:58px;height:58px;"></image>
 
       <view class="desc">

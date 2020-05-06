@@ -9,7 +9,7 @@
 <picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
   <view class='flex-wrp-row item'>
     <view class='item-left flex-wrp-row'>
-      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <image src='../images/f1.png' class='icon-left' mode='aspectFit'></image>
       <text decode="{{true}}">&nbsp;&nbsp;性别</text>
     </view>
 
@@ -25,7 +25,7 @@
 <picker mode="multiSelector" bindchange="ageMethod" value="{{ageIndex}}" range="{{ageArray}}">
   <view class='flex-wrp-row item'>
     <view class='item-left flex-wrp-row'>
-      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <image src='../images/f2.png' class='icon-left' mode='aspectFit'></image>
       <text decode="{{true}}">&nbsp;&nbsp;年龄</text>
     </view>
     <view class='item-right flex-wrp-row'>
@@ -40,7 +40,7 @@
 <picker mode="multiSelector" bindchange="heightMethod" value="{{heightIndex}}" range="{{heightArray}}">
   <view class='flex-wrp-row item'>
     <view class='item-left flex-wrp-row'>
-      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <image src='../images/f3.png' class='icon-left' mode='aspectFit'></image>
       <text decode="{{true}}">&nbsp;&nbsp;身高</text>
     </view>
     <view class='item-right flex-wrp-row'>
@@ -55,7 +55,7 @@
 <picker mode="multiSelector" bindchange="weightMethod" value="{{weightIndex}}" range="{{weightArray}}">
   <view class='flex-wrp-row item'>
     <view class='item-left flex-wrp-row'>
-      <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
+      <image src='../images/f4.png' class='icon-left' mode='aspectFit'></image>
       <text decode="{{true}}">&nbsp;&nbsp;体重</text>
     </view>
     <view class='item-right flex-wrp-row'>
@@ -69,8 +69,8 @@
 
 <view class='flex-wrp-row item'>
   <view class='item-left flex-wrp-row'>
-    <image src='../images/photo.png' class='icon-left' mode='aspectFit'></image>
-    <text decode="{{true}}">&nbsp;&nbsp;基础代谢</text>
+    <image src='../images/f5.png' class='icon-left' mode='aspectFit'></image>
+    <text decode="{{true}}">&nbsp;&nbsp;基础代谢率</text>
   </view>
   <view class='item-right flex-wrp-row'>
     <text decode="{{true}}">{{basic}}&nbsp;&nbsp;</text>
