@@ -12,20 +12,18 @@
       <text>选择</text>
     </view>
     <view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="select" id="{{item.id}}">
-      <picker mode="multiSelector" bindchange="gramMethod" value="{{gramIndex}}" range="{{gramArray}}">
-        <view class="item">
-          <image src="{{item.image}}" class="image"></image>
+      <view class="item">
+        <image src="{{item.image}}" class="image"></image>
 
-          <view class="desc">
-            <view>{{item.name}}</view>
-            <view class="calorie">
-              <view>卡路里：{{item.calorie}}千卡/100克</view>
-              <view class="probability">相似度：{{item.probability}}</view>
-            </view>
+        <view class="desc">
+          <view>{{item.name}}</view>
+          <view class="calorie">
+            <view>卡路里：{{item.calorie}}千卡/100克</view>
+            <view class="probability">相似度：{{item.probability}}</view>
           </view>
         </view>
-        <view class="line"></view>
-      </picker>
+      </view>
+      <view class="line"></view>
     </view>
     <view>
       <button catchtap="cancel">取消</button>
@@ -34,7 +32,7 @@
   </view>
 </view>
 
-<button bindtap="store">delete</button>
+<button bindtap="delete">delete</button>
 <button bindtap="test">test</button>
 
 <view class="item2">
@@ -45,7 +43,7 @@
       <view class="desc">
         <view>{{item.name}}</view>
         <view class="calorie">
-          <view>卡路里：{{item.calorie}}千卡/100克</view>
+          <view>卡路里：{{item.calorie}}千卡，共{{item.gram}}克</view>
           <view class="probability">相似度：{{item.probability}}</view>
         </view>
       </view>
@@ -53,6 +51,14 @@
   </view>
   <view class="line"></view>
 </view>
+
+<modal 
+  hidden="{{hiddenmodalput}}" 
+  title="请输入多少克" 
+  bindcancel="gramCancel" 
+  bindconfirm="gramConfirm" >
+  <input type='number' placeholder="请输入内容" name="gram" auto-focus  bindinput="gramInput" />
+</modal>
 
 
 <view class="item3">

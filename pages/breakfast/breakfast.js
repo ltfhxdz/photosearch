@@ -7,26 +7,81 @@ Page({
    */
   data: {
     show: false,
+    hiddenmodalput: true,
+    selectIndex: '-1',
+    gram: 0,
     list: [],
-    gramArray: [
-      [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500,
-      1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000],
-      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    ],
+  },
+
+  gramInput: function(e) {
+    this.setData({
+      gram: e.detail.value
+    })
+  },
+
+  gramCancel: function(e) {
+    console.log("enter cancel");
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+
+  gramConfirm: function(e) {
+    console.log(this.data.gram);
+
+    var date = util.formatTime(new Date());
+    let foodlist = [];
+    let breakfast = wx.getStorageSync('breakfast');
+    if (breakfast != "") {
+      let food = JSON.parse(breakfast);
+      for (let x in food) {
+        if (date == food[x]["date"]) {
+          foodlist = food[x]["foodlist"];
+          break;
+        }
+      }
+    }
+
+    let selectitem = this.data.list[this.data.selectIndex];
+    selectitem['gram'] = this.data.gram;
+    selectitem['calorie'] = (selectitem['calorie'] * this.data.gram / 100).toFixed();
+    console.log(selectitem);
+    foodlist.push(selectitem);
+
+    let item = {};
+    item["date"] = date;
+    item["foodlist"] = foodlist;
+
+    let food = [];
+    food.push(item);
+
+    breakfast = JSON.stringify(food);
+    wx.setStorageSync('breakfast', breakfast);
+
+    this.setData({
+      hiddenmodalput: true,
+      show: false,
+      selectList: foodlist
+    })
+
   },
 
 
-  gramMethod: function (e) {
-    let gramArray = e.detail.value;
-    let gram = gramArray[0] * 100 + gramArray[1] * 10 + gramArray[2];
-    console.log(gram);
+  select: function(e) {
+    let index = e.currentTarget.dataset.index;
+    this.data.selectIndex = index;
+    this.setData({
+      hiddenmodalput: false
+    });
 
   },
+
 
 
   upload: function(e) {
-    var that = this
+    this.data.gram = 0;
+    this.data.selectIndex = '-1';
+    var that = this;
     let access_token = '';
     wx.request({
       url: 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=oitYwV15rb3YMv4aU1M651Dz&client_secret=9BIOTE9uwetZBrDPbb9UC5noUbuBiQHv',
@@ -40,7 +95,7 @@ Page({
     })
 
     wx.chooseImage({
-      // 默认9
+      // 默认9张图片
       count: 1,
       // 可以指定是原图还是压缩图，默认二者都有
       sizeType: ['original', 'compressed'],
@@ -76,7 +131,7 @@ Page({
               if (food['has_calorie']) {
                 newList.push(food);
               } else {
-                if (food['name'] == "非菜"){
+                if (food['name'] == "非菜") {
                   newList.push(food);
                 }
               }
@@ -92,53 +147,14 @@ Page({
   },
 
 
-  select: function(e) {
-
-    var date = util.formatTime(new Date());
-    let foodlist = [];
-    let breakfast = wx.getStorageSync('breakfast');
-    if (breakfast != "") {
-      let food = JSON.parse(breakfast);
-      for (let x in food) {
-        if (date == food[x]["date"]) {
-          foodlist = food[x]["foodlist"];
-          break;
-        }
-      }
-    }
-
-    let index = e.currentTarget.dataset.index;
-    let selectitem = this.data.list[index];
-    foodlist.push(selectitem);
-
-    let item = {};
-    item["date"] = date;
-    item["foodlist"] = foodlist;
-
-    let food = [];
-    food.push(item);
-
-    breakfast = JSON.stringify(food);
-    wx.setStorageSync('breakfast', breakfast);
-
-    this.setData({
-      show: false,
-      gramsShow:true,
-      selectList: foodlist
-    })
-
-  },
-
-
 
   test: function(e) {
 
-    let breakfast = wx.getStorageSync('breakfast');
-    console.log(breakfast);
+    console.log((334 * 230 / 100).toFixed());
   },
 
 
-  store: function(e) {
+  delete: function(e) {
     wx.removeStorageSync('breakfast');
     this.setData({
       show: false,
