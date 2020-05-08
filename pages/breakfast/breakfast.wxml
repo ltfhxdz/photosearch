@@ -1,6 +1,6 @@
 <view class="view_parent">
-  <view class="item1">
-    <button bindtap="upload" style="color:black;background-color:cyan">美食照片</button>
+  <view>
+    <button bindtap="upload" class="item1">美食照片</button>
   </view>
 </view>
 
@@ -12,29 +12,33 @@
       <text>选择</text>
     </view>
     <view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="select" id="{{item.id}}">
-      <view class="item">
-        <image src="{{item.image}}" class="image"></image>
+      <picker mode="multiSelector" bindchange="gramMethod" value="{{gramIndex}}" range="{{gramArray}}">
+        <view class="item">
+          <image src="{{item.image}}" class="image"></image>
 
-        <view class="desc">
-          <view>{{item.name}}</view>
-          <view class="calorie">
-            <view>卡路里：{{item.calorie}}千卡/100克</view>
-            <view class="probability">相似度：{{item.probability}}</view>
+          <view class="desc">
+            <view>{{item.name}}</view>
+            <view class="calorie">
+              <view>卡路里：{{item.calorie}}千卡/100克</view>
+              <view class="probability">相似度：{{item.probability}}</view>
+            </view>
           </view>
         </view>
-      </view>
-      <view class="line"></view>
+        <view class="line"></view>
+      </picker>
     </view>
     <view>
       <button catchtap="cancel">取消</button>
     </view>
+
   </view>
 </view>
 
 <button bindtap="store">delete</button>
+<button bindtap="test">test</button>
 
 <view class="item2">
-  <view wx:for="{{newList}}" wx:key="key">
+  <view wx:for="{{selectList}}" wx:key="key">
     <view class="item">
       <image src="{{item.image}}" class="image"></image>
 
@@ -46,9 +50,10 @@
         </view>
       </view>
     </view>
-    <view class="line"></view>
   </view>
+  <view class="line"></view>
 </view>
+
 
 <view class="item3">
   <text class="item2">吃美食，还要瘦</text>

@@ -8,3 +8,18 @@
 首先读取文件，如果文件中没有，在页面中输入，然后记录到文件中
 先显示性别，后面考虑删除
 箭头的颜色
+
+分析可以存储多少个food信息
+  单个 key 允许存储的最大数据长度为 1MB，所有数据存储上限为 10MB。
+  
+    wx.getStorageInfoSync({
+      success(res) {
+        console.log('-----------------')
+        console.log(res.keys);
+        console.log(res.currentSize);
+        console.log(res.limitSize);
+        console.log('-----------------')
+      }
+    });
+
+    

@@ -82,8 +82,9 @@
 }
 
 .item1 {
-  color: black;
+  color: cyan;
   font-size: 40rpx;
+  background-color:black
 }
 
 .item2 {

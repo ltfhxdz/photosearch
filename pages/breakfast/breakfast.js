@@ -1,4 +1,5 @@
-// pages/search/search.js
+var util = require('../../utils/util.js');
+
 Page({
 
   /**
@@ -7,7 +8,22 @@ Page({
   data: {
     show: false,
     list: [],
+    gramArray: [
+      [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500,
+      1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000],
+      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ],
   },
+
+
+  gramMethod: function (e) {
+    let gramArray = e.detail.value;
+    let gram = gramArray[0] * 100 + gramArray[1] * 10 + gramArray[2];
+    console.log(gram);
+
+  },
+
 
   upload: function(e) {
     var that = this
@@ -19,7 +35,6 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res.data.access_token)
         access_token = res.data.access_token
       }
     })
@@ -34,7 +49,6 @@ Page({
       success: function(res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        console.log(tempFilePaths);
         let base64 = wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], 'base64')
         //上传操作
         wx.uploadFile({
@@ -54,15 +68,21 @@ Page({
 
             let jsonResult = JSON.parse(res.data);
             let result = jsonResult['result'];
-
+            let newList = [];
             for (var k in result) {
               var food = result[k];
               food['probability'] = ((parseFloat(food['probability']).toFixed(4)) * 100).toFixed(2) + "%";
               food['image'] = tempFilePaths[0];
+              if (food['has_calorie']) {
+                newList.push(food);
+              } else {
+                if (food['name'] == "非菜"){
+                  newList.push(food);
+                }
+              }
             }
-            console.log(JSON.stringify(result));
             that.setData({
-              list: result,
+              list: newList,
               show: true
             })
           }
@@ -73,51 +93,61 @@ Page({
 
 
   select: function(e) {
-    let xList = [];
+
+    var date = util.formatTime(new Date());
+    let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
     if (breakfast != "") {
-      let newList = JSON.parse(breakfast);
-      for (let x in newList) {
-        xList.push(newList[x]);
+      let food = JSON.parse(breakfast);
+      for (let x in food) {
+        if (date == food[x]["date"]) {
+          foodlist = food[x]["foodlist"];
+          break;
+        }
       }
     }
 
     let index = e.currentTarget.dataset.index;
-    let item = this.data.list[index];
-    xList.push(item);
+    let selectitem = this.data.list[index];
+    foodlist.push(selectitem);
 
-    breakfast = JSON.stringify(xList);
+    let item = {};
+    item["date"] = date;
+    item["foodlist"] = foodlist;
+
+    let food = [];
+    food.push(item);
+
+    breakfast = JSON.stringify(food);
     wx.setStorageSync('breakfast', breakfast);
 
     this.setData({
       show: false,
-      newList: xList
+      gramsShow:true,
+      selectList: foodlist
     })
+
   },
 
 
 
+  test: function(e) {
+
+    let breakfast = wx.getStorageSync('breakfast');
+    console.log(breakfast);
+  },
+
+
   store: function(e) {
-    console.log('enter store');
     wx.removeStorageSync('breakfast');
     this.setData({
       show: false,
-      newList: []
+      selectList: []
     })
   },
 
   cancel: function(e) {
-    console.log('enter cancel');
 
-    wx.getStorageInfoSync({
-      success(res) {
-        console.log('-----------------')
-        console.log(res.keys);
-        console.log(res.currentSize);
-        console.log(res.limitSize);
-        console.log('-----------------')
-      }
-    });
 
     this.setData({
       show: false
@@ -130,11 +160,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // wx.removeStorageSync("breakfast");
+
+    var date = util.formatTime(new Date());
+    let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
     if (breakfast != "") {
+      let food = JSON.parse(breakfast);
+      for (let x in food) {
+        if (date == food[x]["date"]) {
+          foodlist = food[x]["foodlist"];
+          break;
+        }
+      }
       this.setData({
-        newList:JSON.parse(breakfast)
+        selectList: foodlist
       })
     }
   },
