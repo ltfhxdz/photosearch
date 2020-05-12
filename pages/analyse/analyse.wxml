@@ -2,80 +2,110 @@
   <view class='item-left flex-wrp-row'>
     <open-data type="userNickName"></open-data>
   </view>
-</view>
-
-<view class="line"></view>
-
-<picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
-  <view class='flex-wrp-row item'>
-    <view class='item-left flex-wrp-row'>
-      <image src='../images/f1.png' class='icon-left' mode='aspectFit'></image>
-      <text decode="{{true}}">&nbsp;&nbsp;性别</text>
-    </view>
-
-    <view class='item-right flex-wrp-row'>
-      <text decode="{{true}}">{{gender}}&nbsp;&nbsp;</text>
-      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
-    </view>
-  </view>
-</picker>
-
-<view class="line"></view>
-
-<picker mode="multiSelector" bindchange="ageMethod" value="{{ageIndex}}" range="{{ageArray}}">
-  <view class='flex-wrp-row item'>
-    <view class='item-left flex-wrp-row'>
-      <image src='../images/f2.png' class='icon-left' mode='aspectFit'></image>
-      <text decode="{{true}}">&nbsp;&nbsp;年龄</text>
-    </view>
-    <view class='item-right flex-wrp-row'>
-      <text decode="{{true}}">{{age}}&nbsp;&nbsp;</text>
-      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
-    </view>
-  </view>
-</picker>
-
-<view class="line"></view>
-
-<picker mode="multiSelector" bindchange="heightMethod" value="{{heightIndex}}" range="{{heightArray}}">
-  <view class='flex-wrp-row item'>
-    <view class='item-left flex-wrp-row'>
-      <image src='../images/f3.png' class='icon-left' mode='aspectFit'></image>
-      <text decode="{{true}}">&nbsp;&nbsp;身高</text>
-    </view>
-    <view class='item-right flex-wrp-row'>
-      <text decode="{{true}}">{{height}}&nbsp;&nbsp;</text>
-      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
-    </view>
-  </view>
-</picker>
-
-<view class="line"></view>
-
-<picker mode="multiSelector" bindchange="weightMethod" value="{{weightIndex}}" range="{{weightArray}}">
-  <view class='flex-wrp-row item'>
-    <view class='item-left flex-wrp-row'>
-      <image src='../images/f4.png' class='icon-left' mode='aspectFit'></image>
-      <text decode="{{true}}">&nbsp;&nbsp;体重</text>
-    </view>
-    <view class='item-right flex-wrp-row'>
-      <text decode="{{true}}">{{weight}}&nbsp;&nbsp;</text>
-      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
-    </view>
-  </view>
-</picker>
-
-<view class="line"></view>
-
-<view class='flex-wrp-row item'>
-  <view class='item-left flex-wrp-row'>
-    <image src='../images/f5.png' class='icon-left' mode='aspectFit'></image>
-    <text decode="{{true}}">&nbsp;&nbsp;基础代谢率</text>
-  </view>
   <view class='item-right flex-wrp-row'>
-    <text decode="{{true}}">{{basic}}&nbsp;&nbsp;</text>
-    <image class='icon-right'></image>
+    <view bindtap="open">{{isExpanding ? "收起" : "展开"}}
+    </view>
+    <image src='../images/down.jpg' class='icon-right' mode='aspectFit' wx:if="{{! isExpanding}}" bindtap="open"></image>
+    <image src='../images/up.jpg' class='icon-right' mode='aspectFit' wx:if="{{isExpanding}}" bindtap="open"></image>
   </view>
 </view>
 
 <view class="line"></view>
+<view wx:if="{{isExpanding}}">
+
+  <picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
+    <view class='flex-wrp-row item'>
+      <view class='item-left flex-wrp-row'>
+        <image src='../images/f1.png' class='icon-left' mode='aspectFit'></image>
+        <text decode="{{true}}">&nbsp;&nbsp;性别</text>
+      </view>
+
+      <view class='item-right flex-wrp-row'>
+        <text decode="{{true}}">{{gender}}&nbsp;&nbsp;</text>
+        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+      </view>
+    </view>
+  </picker>
+
+  <view class="line"></view>
+
+  <picker mode="multiSelector" bindchange="ageMethod" value="{{ageIndex}}" range="{{ageArray}}">
+    <view class='flex-wrp-row item'>
+      <view class='item-left flex-wrp-row'>
+        <image src='../images/f2.png' class='icon-left' mode='aspectFit'></image>
+        <text decode="{{true}}">&nbsp;&nbsp;年龄</text>
+      </view>
+      <view class='item-right flex-wrp-row'>
+        <text decode="{{true}}">{{age}}&nbsp;&nbsp;</text>
+        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+      </view>
+    </view>
+  </picker>
+
+  <view class="line"></view>
+
+  <picker mode="multiSelector" bindchange="heightMethod" value="{{heightIndex}}" range="{{heightArray}}">
+    <view class='flex-wrp-row item'>
+      <view class='item-left flex-wrp-row'>
+        <image src='../images/f3.png' class='icon-left' mode='aspectFit'></image>
+        <text decode="{{true}}">&nbsp;&nbsp;身高</text>
+      </view>
+      <view class='item-right flex-wrp-row'>
+        <text decode="{{true}}">{{height}}&nbsp;&nbsp;</text>
+        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+      </view>
+    </view>
+  </picker>
+
+  <view class="line"></view>
+
+  <picker mode="multiSelector" bindchange="weightMethod" value="{{weightIndex}}" range="{{weightArray}}">
+    <view class='flex-wrp-row item'>
+      <view class='item-left flex-wrp-row'>
+        <image src='../images/f4.png' class='icon-left' mode='aspectFit'></image>
+        <text decode="{{true}}">&nbsp;&nbsp;体重</text>
+      </view>
+      <view class='item-right flex-wrp-row'>
+        <text decode="{{true}}">{{weight}}&nbsp;&nbsp;</text>
+        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+      </view>
+    </view>
+  </picker>
+
+  <view class="line"></view>
+
+  <view class='flex-wrp-row item'>
+    <view class='item-left flex-wrp-row'>
+      <image src='../images/f5.png' class='icon-left' mode='aspectFit'></image>
+      <text decode="{{true}}">&nbsp;&nbsp;基础代谢率</text>
+    </view>
+    <view class='item-right flex-wrp-row'>
+      <text decode="{{true}}">{{basic}}千卡&nbsp;&nbsp;</text>
+      <image class='icon-right'></image>
+    </view>
+  </view>
+
+  <view class="line"></view>
+
+</view>
+
+<view class="x4">
+  <view class="x1">
+    <text>今日饮食热量</text>
+    <text>{{todayCalorie}}千卡</text>
+  </view>
+  <view>
+    <image src='../images/xiaoyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie < basic}}"></image>
+    <image src='../images/dengyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie == basic}}"></image>
+    <image src='../images/dayuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie > basic}}"></image>
+  </view>
+  <view class="x2">
+    <text>基础代谢率</text>
+    <text>{{basic}}千卡</text>
+  </view>
+</view>
+<view class="line"></view>
+
+<view class="item3">
+  <text class="item2">饮食热量 小于 (基础代谢率) = 快速减肥</text>
+</view>

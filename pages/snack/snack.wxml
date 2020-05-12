@@ -1,2 +1,4 @@
-<!--pages/snack/snack.wxml-->
-<text>pages/snack/snack.wxml</text>
+
+<view class="item3">
+  <text class="item2">1克脂肪=9千卡，1斤脂肪=4500千卡</text>
+</view>

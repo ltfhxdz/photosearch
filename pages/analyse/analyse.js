@@ -1,5 +1,4 @@
-//获取应用实例
-const app = getApp()
+var util = require('../../utils/util.js');
 
 Page({
   data: {
@@ -20,6 +19,12 @@ Page({
 
   },
 
+  open: function() {
+    this.setData({
+      isExpanding: !this.data.isExpanding
+    })
+  },
+
   heightMethod: function(e) {
     let heightArray = e.detail.value;
     let height = heightArray[0] * 10 + heightArray[1];
@@ -29,7 +34,7 @@ Page({
 
     this.setData({
       height: wx.getStorageSync('height') + '厘米',
-      basic: wx.getStorageSync('basic') + '千卡'
+      basic: wx.getStorageSync('basic')
     })
   },
 
@@ -42,7 +47,7 @@ Page({
 
     this.setData({
       weight: wx.getStorageSync('weight') + '斤',
-      basic: wx.getStorageSync('basic') + '千卡'
+      basic: wx.getStorageSync('basic')
     })
   },
 
@@ -56,7 +61,7 @@ Page({
     this.setData({
       genderIndex: e.detail.value,
       gender: wx.getStorageSync('gender'),
-      basic: wx.getStorageSync('basic') + '千卡'
+      basic: wx.getStorageSync('basic')
     })
   },
 
@@ -67,11 +72,17 @@ Page({
     let weight = wx.getStorageSync('weight');
 
     let basic = 0
-    if (gender == '男') {
-      basic = 67 + 13.73 * ((weight / 2).toFixed()) + 5 * height - 6.9 * age
-    } else {
-      basic = 661 + 9.6 * (weight / 2).toFixed() + 1.72 * height - 4.7 * age
+    if (age != "" && age > 0 && height > 0 && weight > 0) {
+      if (gender == '男') {
+        basic = 67 + 13.73 * ((weight / 2).toFixed()) + 5 * height - 6.9 * age
+      } else if (gender == '女') {
+        basic = 661 + 9.6 * (weight / 2).toFixed() + 1.72 * height - 4.7 * age
+      }
     }
+
+
+
+
     basic = basic.toFixed();
     wx.setStorageSync('basic', basic);
   },
@@ -86,7 +97,7 @@ Page({
 
     this.setData({
       age: wx.getStorageSync('age') + '岁',
-      basic: wx.getStorageSync('basic') + '千卡'
+      basic: wx.getStorageSync('basic')
     })
   },
 
@@ -120,7 +131,12 @@ Page({
     let age = wx.getStorageSync('age');
     let a = parseInt(age / 10);
     let b = age % 10;
-    let ageIndex = [a, b];
+    let ageIndex = [];
+    if (a == 0) {
+      ageIndex = [3, 5];
+    } else {
+      ageIndex = [a, b];
+    }
     return ageIndex;
   },
 
@@ -128,7 +144,14 @@ Page({
     let height = wx.getStorageSync('height');
     let a = parseInt(height / 10);
     let b = height % 10;
-    let heightIndex = [a, b];
+    let heightIndex = [];
+    if (a == 0) {
+      heightIndex = [16, 5];
+    } else {
+      heightIndex = [a, b];
+    }
+
+
     return heightIndex;
   },
 
@@ -137,17 +160,51 @@ Page({
     let a = parseInt(weight / 100);
     let b = parseInt(weight % 100 / 10);
     let c = weight % 10;
-    let weightIndex = [a, b, c];
+    let weightIndex = [];
+    if (a == 0) {
+      weightIndex = [1, 5, 5];
+    } else {
+      weightIndex = [a, b, c];
+    }
     return weightIndex;
   },
 
   onLoad: function() {
     //设置默认值
-    this.setDefault();
+    // this.setDefault();
+
+  },
+
+  onShow: function() {
     //设置基础代谢
     this.setBasic();
 
+    let isExpanding = false;
+    if (wx.getStorageSync("basic") == 0) {
+      isExpanding = true;
+    }
+
+    var date = util.formatTime(new Date());
+    let foodlist = [];
+    let breakfast = wx.getStorageSync('breakfast');
+    if (breakfast != "") {
+      let food = JSON.parse(breakfast);
+      for (let x in food) {
+        if (date == food[x]["date"]) {
+          foodlist = food[x]["foodlist"];
+          break;
+        }
+      }
+    }
+
+    let todayCalorie = 0;
+    for (let x in foodlist) {
+      todayCalorie = todayCalorie + parseInt(foodlist[x]["calorie"]);
+    }
+
     this.setData({
+      todayCalorie: todayCalorie,
+      isExpanding: isExpanding,
       genderIndex: this.getGenderIndex(),
       ageIndex: this.getAgeIndex(),
       heightIndex: this.getHeightIndex(),
@@ -156,7 +213,7 @@ Page({
       age: wx.getStorageSync('age') + '岁',
       height: wx.getStorageSync('height') + '厘米',
       weight: wx.getStorageSync('weight') + '斤',
-      basic: wx.getStorageSync('basic') + '千卡'
+      basic: wx.getStorageSync('basic')
     })
-  }
+  },
 })

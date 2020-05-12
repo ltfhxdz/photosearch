@@ -4,6 +4,8 @@
   </view>
 </view>
 
+<button bindtap="delete">删除食品</button>
+<button bindtap="test">删除存储</button>
 
 <view class="mask" style="{{show?'z-index: 1;opacity:0.7':''}}"></view>
 <view class='modalBg' wx:if="{{show}}">
@@ -32,32 +34,26 @@
   </view>
 </view>
 
-<button bindtap="delete">delete</button>
-<button bindtap="test">test</button>
 
-<view class="item2">
-  <view wx:for="{{selectList}}" wx:key="key">
-    <view class="item">
+<scroll-view scroll-y="{{isScroll}}" style='height:{{windowHeight}}px'>
+  <block wx:key="item" wx:for="{{selectList}}">
+    <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
       <image src="{{item.image}}" class="image"></image>
-
       <view class="desc">
         <view>{{item.name}}</view>
         <view class="calorie">
-          <view>卡路里：{{item.calorie}}千卡，共{{item.gram}}克</view>
-          <view class="probability">相似度：{{item.probability}}</view>
+          <view>卡路里：{{item.calorie}}千卡</view>
+          <view class="probability">{{item.gram}}克</view>
         </view>
       </view>
-    </view>
-  </view>
-  <view class="line"></view>
-</view>
 
-<modal 
-  hidden="{{hiddenmodalput}}" 
-  title="请输入多少克" 
-  bindcancel="gramCancel" 
-  bindconfirm="gramConfirm" >
-  <input type='number' placeholder="请输入内容" name="gram" auto-focus  bindinput="gramInput" />
+      <view class="remove" bindtap="deleteItem"  data-index="{{index}}">删除 </view>
+    </view>
+  </block>
+</scroll-view>
+
+<modal hidden="{{hiddenmodalput}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm">
+  <input type='number' placeholder="默认100" name="gram" focus bindinput="gramInput" />
 </modal>
 
 

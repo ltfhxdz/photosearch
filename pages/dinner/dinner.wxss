@@ -1,1 +1,17 @@
-/* pages/dinner/dinner.wxss */
+page{
+  background: rgb(236, 234, 253);
+}
+
+.item2 {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.item3 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: AliceBlue;
+  text-align: center;
+}
+

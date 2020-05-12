@@ -11,6 +11,8 @@ Page({
     selectIndex: '-1',
     gram: 0,
     list: [],
+    windowHeight: 0,
+    delBtnWidth: 160,
   },
 
   gramInput: function(e) {
@@ -43,8 +45,12 @@ Page({
     }
 
     let selectitem = this.data.list[this.data.selectIndex];
-    selectitem['gram'] = this.data.gram;
-    selectitem['calorie'] = (selectitem['calorie'] * this.data.gram / 100).toFixed();
+    let gram = this.data.gram;
+    if (gram == 0) {
+      gram = 100;
+    }
+    selectitem['gram'] = gram;
+    selectitem['calorie'] = (selectitem['calorie'] * gram / 100).toFixed();
     console.log(selectitem);
     foodlist.push(selectitem);
 
@@ -128,6 +134,7 @@ Page({
               var food = result[k];
               food['probability'] = ((parseFloat(food['probability']).toFixed(4)) * 100).toFixed(2) + "%";
               food['image'] = tempFilePaths[0];
+              food['right'] = 0;
               if (food['has_calorie']) {
                 newList.push(food);
               } else {
@@ -149,13 +156,18 @@ Page({
 
 
   test: function(e) {
-
-    console.log((334 * 230 / 100).toFixed());
+    console.log(wx.getStorageInfoSync());
+    wx.removeStorageSync("age");
+    wx.removeStorageSync("gender");
+    wx.removeStorageSync("height");
+    wx.removeStorageSync("weight");
+    wx.removeStorageSync("basic");
+    wx.removeStorageSync("logs");
   },
 
 
   delete: function(e) {
-    wx.removeStorageSync('breakfast');
+    wx.removeStorageSync("breakfast");
     this.setData({
       show: false,
       selectList: []
@@ -163,20 +175,65 @@ Page({
   },
 
   cancel: function(e) {
-
-
     this.setData({
       show: false
     })
   },
 
+  drawStart: function(e) {
+    var touch = e.touches[0]
 
+    for (var index in this.data.selectList) {
+      var item = this.data.selectList[index]
+      item.right = 0
+    }
+    this.setData({
+      selectList: this.data.selectList,
+      startX: touch.clientX,
+    })
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
+  },
+  drawMove: function(e) {
+    var touch = e.touches[0]
+    var item = this.data.selectList[e.currentTarget.dataset.index]
+    var disX = this.data.startX - touch.clientX
 
+    if (disX >= 20) {
+      if (disX > this.data.delBtnWidth) {
+        disX = this.data.delBtnWidth
+      }
+      item.right = disX
+      this.setData({
+        isScroll: false,
+        selectList: this.data.selectList
+      })
+    } else {
+      item.right = 0
+      this.setData({
+        isScroll: true,
+        selectList: this.data.selectList
+      })
+    }
+  },
+  drawEnd: function(e) {
+    var item = this.data.selectList[e.currentTarget.dataset.index];
+
+    if (item.right >= this.data.delBtnWidth / 2) {
+      item.right = this.data.delBtnWidth
+      this.setData({
+        isScroll: true,
+        selectList: this.data.selectList,
+      })
+    } else {
+      item.right = 0
+      this.setData({
+        isScroll: true,
+        selectList: this.data.selectList,
+      })
+    }
+  },
+
+  deleteItem: function(e) {
     var date = util.formatTime(new Date());
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
@@ -185,13 +242,25 @@ Page({
       for (let x in food) {
         if (date == food[x]["date"]) {
           foodlist = food[x]["foodlist"];
+          foodlist.splice(e.currentTarget.dataset.index, 1);
           break;
         }
       }
-      this.setData({
-        selectList: foodlist
-      })
+      breakfast = JSON.stringify(food);
+      wx.setStorageSync('breakfast', breakfast);
     }
+
+    this.data.selectList.splice(e.currentTarget.dataset.index, 1);
+    this.setData({
+      selectList: this.data.selectList
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+
   },
 
   /**
@@ -205,7 +274,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          windowHeight: res.windowHeight
+        });
+      }
+    });
+    var date = util.formatTime(new Date());
+    let foodlist = [];
+    let breakfast = wx.getStorageSync('breakfast');
+    if (breakfast != "") {
+      let food = JSON.parse(breakfast);
+      for (let x in food) {
+        if (date == food[x]["date"]) {
+          foodlist = food[x]["foodlist"];
+          break;
+        }
+      }
 
+      this.setData({
+        selectList: foodlist,
+        windowHeight: this.data.windowHeight
+      })
+    }
   },
 
   /**
