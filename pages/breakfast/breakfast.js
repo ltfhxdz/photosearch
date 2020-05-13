@@ -1,4 +1,6 @@
-var util = require('../../utils/util.js');
+var util = require('../../utils/util.js'); 
+var foodTool = require('../../utils/food.js');
+
 
 Page({
 
@@ -29,8 +31,6 @@ Page({
   },
 
   gramConfirm: function(e) {
-    console.log(this.data.gram);
-
     var date = util.formatTime(new Date());
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
@@ -51,7 +51,6 @@ Page({
     }
     selectitem['gram'] = gram;
     selectitem['calorie'] = (selectitem['calorie'] * gram / 100).toFixed();
-    console.log(selectitem);
     foodlist.push(selectitem);
 
     let item = {};
@@ -156,13 +155,7 @@ Page({
 
 
   test: function(e) {
-    console.log(wx.getStorageInfoSync());
-    wx.removeStorageSync("age");
-    wx.removeStorageSync("gender");
-    wx.removeStorageSync("height");
-    wx.removeStorageSync("weight");
-    wx.removeStorageSync("basic");
-    wx.removeStorageSync("logs");
+    foodTool.test();
   },
 
 
@@ -256,23 +249,12 @@ Page({
     })
   },
 
-  deleteStorage() {
-    let storeInfo = wx.getStorageInfoSync();
-    let currentSize = storeInfo['currentSize'];
-    let limitSize = storeInfo['limitSize'];
-    if (currentSize / limitSize > 0.9) {
-      let breakfast = wx.getStorageSync("breakfast");
-      let food = JSON.parse(breakfast);
-      food.splice(0, 100);
-      wx.setStorageSync('breakfast', JSON.stringify(food));
-    }
-  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.deleteStorage();
+    foodTool.deleteStorage("breakfast");
   },
 
   /**
