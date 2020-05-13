@@ -1,8 +1,8 @@
-左滑删除
 提取公共方法
 调整样式，黑色底
 手动添加食品
 非采不能选择
+显示的图片有变形
 
 恭喜你，已经第几次低于基础代谢率
 美丽人生，从健康体态开始
@@ -11,16 +11,4 @@
 先显示性别，后面考虑删除
 箭头的颜色
 
-分析可以存储多少个food信息
-  单个 key 允许存储的最大数据长度为 1MB，所有数据存储上限为 10MB。
-  
-    wx.getStorageInfoSync({
-      success(res) {
-        console.log('-----------------')
-        console.log(res.keys);
-        console.log(res.currentSize);
-        console.log(res.limitSize);
-        console.log('-----------------')
-      }
-    });
 

@@ -256,11 +256,23 @@ Page({
     })
   },
 
+  deleteStorage() {
+    let storeInfo = wx.getStorageInfoSync();
+    let currentSize = storeInfo['currentSize'];
+    let limitSize = storeInfo['limitSize'];
+    if (currentSize / limitSize > 0.9) {
+      let breakfast = wx.getStorageSync("breakfast");
+      let food = JSON.parse(breakfast);
+      food.splice(0, 100);
+      wx.setStorageSync('breakfast', JSON.stringify(food));
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.deleteStorage();
   },
 
   /**
@@ -285,6 +297,7 @@ Page({
     var date = util.formatTime(new Date());
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
+    console.log(breakfast);
     if (breakfast != "") {
       let food = JSON.parse(breakfast);
       for (let x in food) {
@@ -293,7 +306,7 @@ Page({
           break;
         }
       }
-
+      console.log(foodlist);
       this.setData({
         selectList: foodlist,
         windowHeight: this.data.windowHeight
