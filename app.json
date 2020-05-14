@@ -1,14 +1,7 @@
 {
   "pages": [
-    "pages/breakfast/breakfast",
-    "pages/analyse/analyse",
-    "pages/search/search",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/me/me",
-    "pages/lunch/lunch",
-    "pages/snack/snack",
-    "pages/dinner/dinner"
+    "pages/food/food",
+    "pages/analyse/analyse"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,24 +16,12 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/breakfast/breakfast",
-        "text": "早餐"
-      },
-      {
-        "pagePath": "pages/lunch/lunch",
-        "text": "午餐"
+        "pagePath": "pages/food/food",
+        "text": "美食"
       },
       {
         "pagePath": "pages/analyse/analyse",
         "text": "分析"
-      },
-      {
-        "pagePath": "pages/dinner/dinner",
-        "text": "晚餐"
-      },
-      {
-        "pagePath": "pages/snack/snack",
-        "text": "加餐"
       }
     ]
   },

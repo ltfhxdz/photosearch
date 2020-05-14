@@ -1,4 +1,4 @@
-page{
+page {
   background: rgb(236, 234, 253);
 }
 
@@ -80,6 +80,11 @@ page{
   background-color: #ccc;
 }
 
+.item {
+  display: flex;
+  flex-direction: row;
+}
+
 .item1 {
   color: cyan;
   font-size: 40rpx;
@@ -99,12 +104,12 @@ page{
   text-align: center;
 }
 
-.item {
-  display: flex;
-  flex-direction: row;
+.item4 {
+  margin-top: 100rpx;
 }
 
 .order-item {
+  margin-top: 10rpx;
   width: 100%;
   display: flex;
   position: relative;

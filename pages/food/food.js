@@ -174,11 +174,10 @@ Page({
   },
 
   drawStart: function(e) {
-    var touch = e.touches[0]
-
+    var touch = e.touches[0];
     for (var index in this.data.selectList) {
       var item = this.data.selectList[index]
-      item.right = 0
+      item.right = 0;
     }
     this.setData({
       selectList: this.data.selectList,
