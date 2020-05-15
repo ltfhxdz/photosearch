@@ -19,6 +19,7 @@ Page({
 
   },
 
+
   open: function() {
     this.setData({
       isExpanding: !this.data.isExpanding
@@ -202,6 +203,16 @@ Page({
       todayCalorie = todayCalorie + parseInt(foodlist[x]["calorie"]);
     }
 
+    let basic = wx.getStorageSync('basic');
+    let showAnalyse = false;
+    let minuteCalorie = 0;
+    let fatTime = 0;
+    if (basic > 0) {
+      showAnalyse = true;
+      minuteCalorie = (basic / 1440).toFixed(2);
+      fatTime = (9 / (basic / 1440)).toFixed();
+    }
+
     this.setData({
       todayCalorie: todayCalorie,
       isExpanding: isExpanding,
@@ -213,7 +224,10 @@ Page({
       age: wx.getStorageSync('age') + '岁',
       height: wx.getStorageSync('height') + '厘米',
       weight: wx.getStorageSync('weight') + '斤',
-      basic: wx.getStorageSync('basic')
+      basic: wx.getStorageSync('basic'),
+      minuteCalorie: minuteCalorie,
+      fatTime: fatTime,
+      showAnalyse: showAnalyse
     })
   },
 })

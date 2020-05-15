@@ -1,12 +1,8 @@
 var util = require('../../utils/util.js'); 
 var foodTool = require('../../utils/food.js');
 
-
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     show: false,
     hiddenmodalput: true,
@@ -24,7 +20,6 @@ Page({
   },
 
   gramCancel: function(e) {
-    console.log("enter cancel");
     this.setData({
       hiddenmodalput: true
     });
@@ -71,17 +66,18 @@ Page({
 
   },
 
-
   select: function(e) {
     let index = e.currentTarget.dataset.index;
-    this.data.selectIndex = index;
-    this.setData({
-      hiddenmodalput: false
-    });
-
+    let selectitem = this.data.list[index];
+    if (selectitem["name"] == "非菜"){
+      this.cancel();
+    }else{
+      this.data.selectIndex = index;
+      this.setData({
+        hiddenmodalput: false
+      });
+    }
   },
-
-
 
   upload: function(e) {
     this.data.gram = 0;
@@ -124,8 +120,6 @@ Page({
             'top_num': 5
           },
           success: function(res) {
-            console.log(res.data);
-
             let jsonResult = JSON.parse(res.data);
             let result = jsonResult['result'];
             let newList = [];
@@ -152,12 +146,9 @@ Page({
     })
   },
 
-
-
   test: function(e) {
     foodTool.test();
   },
-
 
   delete: function(e) {
     wx.removeStorageSync("breakfast");
@@ -183,8 +174,8 @@ Page({
       selectList: this.data.selectList,
       startX: touch.clientX,
     })
-
   },
+
   drawMove: function(e) {
     var touch = e.touches[0]
     var item = this.data.selectList[e.currentTarget.dataset.index]
@@ -248,7 +239,6 @@ Page({
     })
   },
 
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -278,7 +268,6 @@ Page({
     var date = util.formatTime(new Date());
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
-    console.log(breakfast);
     if (breakfast != "") {
       let food = JSON.parse(breakfast);
       for (let x in food) {
@@ -287,7 +276,6 @@ Page({
           break;
         }
       }
-      console.log(foodlist);
       this.setData({
         selectList: foodlist,
         windowHeight: this.data.windowHeight

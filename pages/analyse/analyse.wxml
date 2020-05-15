@@ -26,7 +26,6 @@
       </view>
     </view>
   </picker>
-
   <view class="line"></view>
 
   <picker mode="multiSelector" bindchange="ageMethod" value="{{ageIndex}}" range="{{ageArray}}">
@@ -41,7 +40,6 @@
       </view>
     </view>
   </picker>
-
   <view class="line"></view>
 
   <picker mode="multiSelector" bindchange="heightMethod" value="{{heightIndex}}" range="{{heightArray}}">
@@ -56,7 +54,6 @@
       </view>
     </view>
   </picker>
-
   <view class="line"></view>
 
   <picker mode="multiSelector" bindchange="weightMethod" value="{{weightIndex}}" range="{{weightArray}}">
@@ -71,7 +68,6 @@
       </view>
     </view>
   </picker>
-
   <view class="line"></view>
 
   <view class='flex-wrp-row item'>
@@ -84,27 +80,53 @@
       <image class='icon-right'></image>
     </view>
   </view>
-
   <view class="line"></view>
 
+  <view wx:if="{{showAnalyse}}">
+    <view class='flex-wrp-row item'>
+      <view class='item-left flex-wrp-row'>
+        <image src='../images/f5.png' class='icon-left' mode='aspectFit'></image>
+        <text decode="{{true}}">&nbsp;&nbsp;静态消耗1分钟的热量：</text>
+      </view>
+      <view class='item-right flex-wrp-row'>
+        <text decode="{{true}}">{{minuteCalorie}}千卡&nbsp;&nbsp;</text>
+        <image class='icon-right'></image>
+      </view>
+    </view>
+    <view class="line"></view>
+
+    <view class='flex-wrp-row item'>
+      <view class='item-left flex-wrp-row'>
+        <image src='../images/f5.png' class='icon-left' mode='aspectFit'></image>
+        <text decode="{{true}}">&nbsp;&nbsp;静态消耗1克脂肪的时间：</text>
+      </view>
+      <view class='item-right flex-wrp-row'>
+        <text decode="{{true}}">{{fatTime}}分钟&nbsp;&nbsp;</text>
+        <image class='icon-right'></image>
+      </view>
+    </view>
+    <view class="line"></view>
+  </view>
 </view>
 
-<view class="x4">
-  <view class="x1">
-    <text>今日饮食热量</text>
-    <text>{{todayCalorie}}千卡</text>
+<view wx:if="{{showAnalyse}}">
+  <view class="x4">
+    <view class="x1">
+      <text>今日饮食热量</text>
+      <text>{{todayCalorie}}千卡</text>
+    </view>
+    <view>
+      <image src='../images/xiaoyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie < basic}}"></image>
+      <image src='../images/dengyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie == basic}}"></image>
+      <image src='../images/dayuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie > basic}}"></image>
+    </view>
+    <view class="x2">
+      <text>基础代谢率</text>
+      <text>{{basic}}千卡</text>
+    </view>
   </view>
-  <view>
-    <image src='../images/xiaoyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie < basic}}"></image>
-    <image src='../images/dengyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie == basic}}"></image>
-    <image src='../images/dayuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie > basic}}"></image>
-  </view>
-  <view class="x2">
-    <text>基础代谢率</text>
-    <text>{{basic}}千卡</text>
-  </view>
+  <view class="line"></view>
 </view>
-<view class="line"></view>
 
 <view class="item3">
   <text class="item2">饮食热量 小于 (基础代谢率) = 快速减肥</text>

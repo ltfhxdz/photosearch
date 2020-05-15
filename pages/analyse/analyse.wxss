@@ -71,13 +71,7 @@ page{
   color: #999;
 }
 
-.x4{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top:20rpx;
-  margin-bottom:20rpx;
-}
+
 
 .x1{
   display: flex;
@@ -93,6 +87,21 @@ page{
   width: 30px;
   height: 30px;
   margin-top:10rpx;
+}
+.x4{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top:20rpx;
+  margin-bottom:20rpx;
+}
+
+.x5{
+  display: flex;
+  flex-direction: row;
+  margin-top:100rpx;
+  margin-left: 60rpx;
+  margin-bottom:20rpx;
 }
 
 .item2 {
