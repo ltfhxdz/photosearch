@@ -89,6 +89,8 @@ page {
   color: cyan;
   font-size: 40rpx;
   background-color: black;
+  width: 200rpx;
+  text-align: center;
 }
 
 .item2 {
@@ -106,7 +108,16 @@ page {
 
 .item4 {
   margin-top: 100rpx;
+  margin-bottom: 100rpx;
 }
+
+.item5 {
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 
 .order-item {
   margin-top: 10rpx;

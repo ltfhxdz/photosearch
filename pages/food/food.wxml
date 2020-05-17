@@ -1,6 +1,11 @@
-<view class="item4">
-  <view>
-    <button bindtap="upload" class="item1">美食照片</button>
+<view class="item5">
+  <view class="item1">
+    <text bindtap="upload">美食</text>
+  </view>
+  <view class="item1">
+    <picker mode="multiSelector" bindchange="calorieMethod" bindcolumnchange="calorieColumnChange" value="{{calorieIndex}}" range="{{calorieArray}}">
+      <text bindtap="calorie">卡路里</text>
+    </picker>
   </view>
 </view>
 
@@ -12,7 +17,7 @@
     </view>
     <view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="select" id="{{item.id}}">
       <view class="item">
-        <image src="{{item.image}}" class="image"  mode='aspectFit' ></image>
+        <image src="{{item.image}}" class="image" mode='aspectFit'></image>
 
         <view class="desc">
           <view>{{item.name}}</view>
@@ -35,7 +40,7 @@
 <scroll-view scroll-y="{{isScroll}}" class="item4" style='height:{{windowHeight}}px'>
   <block wx:key="item" wx:for="{{selectList}}">
     <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
-      <image src="{{item.image}}" class="image"  mode='aspectFit' ></image>
+      <image src="{{item.image}}" class="image" mode='aspectFit'></image>
       <view class="desc">
         <view>{{item.name}}</view>
         <view class="calorie">
@@ -50,8 +55,12 @@
   </block>
 </scroll-view>
 
-<modal hidden="{{hiddenmodalput}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm">
-  <input type='number' placeholder="默认100" name="gram" focus bindinput="gramInput" />
+<modal hidden="{{hiddenModal1}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm">
+  <input type='number' placeholder="默认100" focus bindinput="gramInput" />
+</modal>
+
+<modal hidden="{{hiddenModal2}}" title="请输入多少克" bindcancel="gramCancel2" bindconfirm="gramConfirm2">
+  <input type='number' placeholder="默认100" focus bindinput="gramInput2" />
 </modal>
 
 

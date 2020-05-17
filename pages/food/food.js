@@ -1,16 +1,127 @@
-var util = require('../../utils/util.js'); 
+var util = require('../../utils/util.js');
 var foodTool = require('../../utils/food.js');
+var fooddb = require('/../data/db.js');
 
 Page({
 
   data: {
     show: false,
-    hiddenmodalput: true,
+    hiddenModal1: true,
+    hiddenModal2: true,
     selectIndex: '-1',
     gram: 0,
+    gram2: 0,
     list: [],
+    calorieArray: [],
+    calorieIndex: [0, 0],
     windowHeight: 0,
     delBtnWidth: 160,
+    calorieSelectFood: [],
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    //控制存储大小，超过90%，删除100条记录
+    foodTool.deleteStorage("breakfast");
+    //初始化卡路里
+    this.initCalorie();
+  },
+
+
+  calorie: function(e) {
+    this.data.gram2 = 0;
+  },
+
+  getCalorieArray(index) {
+    let foodList = fooddb.foodList;
+
+    let typeArray = [];
+    for (let x in foodList) {
+      typeArray.push(foodList[x]["type"]);
+    }
+
+    let nameArray = [];
+    let calorieString = '';
+    for (let x in foodList[index]["foodlist"]) {
+      calorieString = foodList[index]["foodlist"][x]["name"] + "(" + foodList[index]["foodlist"][x]["calorie"] + "千卡/100克)"
+      nameArray.push(calorieString);
+    }
+
+    let calorieArray = [];
+    calorieArray.push(typeArray);
+    calorieArray.push(nameArray);
+    return calorieArray;
+  },
+
+
+  //初始化卡路里
+  initCalorie() {
+    this.setData({
+      calorieArray: this.getCalorieArray(0)
+    })
+  },
+
+  //卡路里：选择食品之后的确定按钮触发
+  calorieMethod: function (e) {
+    console.log("enter calorieMethod");
+    let selectIndex = e.detail.value;
+    console.log(selectIndex[0]);
+    console.log(selectIndex[1]);
+    let foodList = fooddb.foodList;
+    let oneIndex = selectIndex[0];
+    let twoIndex = selectIndex[1];
+    let oneList = foodList[oneIndex];
+    let twoList = oneList["foodlist"];
+    let calorieSelectFood = twoList[twoIndex];
+    console.log(calorieSelectFood);
+
+    this.setData({
+      hiddenModal2: false,
+      calorieSelectFood: calorieSelectFood
+    })
+  },
+
+  calorieColumnChange: function(e) {
+    if (e.detail.column == 0) { //第1列
+      if (e.detail.value == 0) {
+        this.setData({
+          calorieArray: this.getCalorieArray(0),
+          calorieIndex: [0, 0]
+        })
+      } else if (e.detail.value == 1) {
+        this.setData({
+          calorieArray: this.getCalorieArray(1),
+          calorieIndex: [1, 0]
+        })
+      } else if (e.detail.value == 2) {
+        this.setData({
+          calorieArray: this.getCalorieArray(2),
+          calorieIndex: [2, 0]
+        })
+      } else if (e.detail.value == 3) {
+        this.setData({
+          calorieArray: this.getCalorieArray(3),
+          calorieIndex: [3, 0]
+        })
+      } else if (e.detail.value == 4) {
+        this.setData({
+          calorieArray: this.getCalorieArray(4),
+          calorieIndex: [4, 0]
+        })
+      } else if (e.detail.value == 5) {
+        this.setData({
+          calorieArray: this.getCalorieArray(5),
+          calorieIndex: [5, 0]
+        })
+      } else if (e.detail.value == 6) {
+        this.setData({
+          calorieArray: this.getCalorieArray(6),
+          calorieIndex: [6, 0]
+        })
+      }
+    }
   },
 
   gramInput: function(e) {
@@ -19,11 +130,19 @@ Page({
     })
   },
 
+
+  gramInput2: function(e) {
+    this.setData({
+      gram2: e.detail.value
+    })
+  },
+
   gramCancel: function(e) {
     this.setData({
-      hiddenmodalput: true
+      hiddenModal1: true
     });
   },
+
 
   gramConfirm: function(e) {
     var date = util.formatTime(new Date());
@@ -59,22 +178,76 @@ Page({
     wx.setStorageSync('breakfast', breakfast);
 
     this.setData({
-      hiddenmodalput: true,
+      hiddenModal1: true,
       show: false,
       selectList: foodlist
     })
+  },
+
+  gramCancel2: function(e) {
+    this.setData({
+      hiddenModal2: true
+    });
+  },
+
+  //卡路里热量提交
+  gramConfirm2: function(e) {
+    console.log("enter gramConfirm2");
+    var date = util.formatTime(new Date());
+    let foodlist = [];
+    let breakfast = wx.getStorageSync('breakfast');
+    if (breakfast != "") {
+      let food = JSON.parse(breakfast);
+      for (let x in food) {
+        if (date == food[x]["date"]) {
+          foodlist = food[x]["foodlist"];
+          break;
+        }
+      }
+    }
+
+    console.log(foodlist);
+    console.log(this.data.gram2);
+
+
+    let gram2 = this.data.gram2;
+    if (gram2 == 0) {
+      gram2 = 100;
+    }
+    let selectitem = this.data.calorieSelectFood;
+    selectitem['gram'] = gram2;
+    selectitem['calorie'] = (selectitem['calorie'] * gram2 / 100).toFixed();
+    selectitem['has_calorie'] = true;
+    selectitem['right'] = 0;
+    foodlist.push(selectitem);
+
+    let item = {};
+    item["date"] = date;
+    item["foodlist"] = foodlist;
+
+    let food = [];
+    food.push(item);
+
+    breakfast = JSON.stringify(food);
+    wx.setStorageSync('breakfast', breakfast);
+
+    this.setData({
+      hiddenModal2: true,
+      selectList: foodlist
+    });
 
   },
 
   select: function(e) {
+    console.log("enter select");
     let index = e.currentTarget.dataset.index;
     let selectitem = this.data.list[index];
-    if (selectitem["name"] == "非菜"){
+    if (selectitem["name"] == "非菜") {
       this.cancel();
-    }else{
+    } else {
       this.data.selectIndex = index;
       this.setData({
-        hiddenmodalput: false
+        hiddenModal1: false
       });
     }
   },
@@ -237,13 +410,6 @@ Page({
     this.setData({
       selectList: this.data.selectList
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    foodTool.deleteStorage("breakfast");
   },
 
   /**
