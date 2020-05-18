@@ -285,6 +285,12 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
 
+        wx.saveImageToPhotosAlbum({
+          filePath: tempFilePaths,
+          success(res) { 
+            console.log("save success");
+          }
+        })
 
         let base64 = wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], 'base64')
         //上传操作
