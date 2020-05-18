@@ -14,9 +14,10 @@ Page({
     list: [],
     calorieArray: [],
     calorieIndex: [0, 0],
-    windowHeight: 0,
     delBtnWidth: 160,
     calorieSelectFood: [],
+    gramValue:'',
+    gram2Value: ''
   },
 
   /**
@@ -29,11 +30,12 @@ Page({
     this.initCalorie();
   },
 
-
+  //点击卡路里按钮
   calorie: function(e) {
     this.data.gram2 = 0;
   },
 
+  //查询db，得到卡路里数组
   getCalorieArray(index) {
     let foodList = fooddb.foodList;
 
@@ -65,17 +67,13 @@ Page({
 
   //卡路里：选择食品之后的确定按钮触发
   calorieMethod: function (e) {
-    console.log("enter calorieMethod");
     let selectIndex = e.detail.value;
-    console.log(selectIndex[0]);
-    console.log(selectIndex[1]);
     let foodList = fooddb.foodList;
     let oneIndex = selectIndex[0];
     let twoIndex = selectIndex[1];
     let oneList = foodList[oneIndex];
     let twoList = oneList["foodlist"];
     let calorieSelectFood = twoList[twoIndex];
-    console.log(calorieSelectFood);
 
     this.setData({
       hiddenModal2: false,
@@ -83,6 +81,7 @@ Page({
     })
   },
 
+  //改变卡路里picker
   calorieColumnChange: function(e) {
     if (e.detail.column == 0) { //第1列
       if (e.detail.value == 0) {
@@ -124,26 +123,28 @@ Page({
     }
   },
 
+  //美食按钮，输入卡路里
   gramInput: function(e) {
     this.setData({
       gram: e.detail.value
     })
   },
 
-
+  //卡路里按钮，输入卡路里
   gramInput2: function(e) {
     this.setData({
       gram2: e.detail.value
     })
   },
 
+  //美食按钮，取消卡路里输入
   gramCancel: function(e) {
     this.setData({
       hiddenModal1: true
     });
   },
 
-
+  //美食按钮，提交卡路里输入
   gramConfirm: function(e) {
     var date = util.formatTime(new Date());
     let foodlist = [];
@@ -160,9 +161,6 @@ Page({
 
     let selectitem = this.data.list[this.data.selectIndex];
     let gram = this.data.gram;
-    if (gram == 0) {
-      gram = 100;
-    }
     selectitem['gram'] = gram;
     selectitem['calorie'] = (selectitem['calorie'] * gram / 100).toFixed();
     foodlist.push(selectitem);
@@ -184,6 +182,19 @@ Page({
     })
   },
 
+  clean: function () {
+    this.setData({
+      gramValue: ''
+    })
+  },
+
+  clean2: function () {
+    this.setData({
+      gram2Value: ''
+    })
+  },
+
+  //卡路里按钮，取消卡路里输入
   gramCancel2: function(e) {
     this.setData({
       hiddenModal2: true
@@ -192,7 +203,6 @@ Page({
 
   //卡路里热量提交
   gramConfirm2: function(e) {
-    console.log("enter gramConfirm2");
     var date = util.formatTime(new Date());
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
@@ -206,17 +216,12 @@ Page({
       }
     }
 
-    console.log(foodlist);
-    console.log(this.data.gram2);
-
-
     let gram2 = this.data.gram2;
-    if (gram2 == 0) {
-      gram2 = 100;
-    }
-    let selectitem = this.data.calorieSelectFood;
+    let selectitem = {};
+    selectitem['name'] = this.data.calorieSelectFood["name"];
+    selectitem['image'] = this.data.calorieSelectFood["image"];
     selectitem['gram'] = gram2;
-    selectitem['calorie'] = (selectitem['calorie'] * gram2 / 100).toFixed();
+    selectitem['calorie'] = (this.data.calorieSelectFood["calorie"] * gram2 / 100).toFixed();
     selectitem['has_calorie'] = true;
     selectitem['right'] = 0;
     foodlist.push(selectitem);
@@ -238,8 +243,8 @@ Page({
 
   },
 
+  //美食按钮，选择美食后，触发的方法
   select: function(e) {
-    console.log("enter select");
     let index = e.currentTarget.dataset.index;
     let selectitem = this.data.list[index];
     if (selectitem["name"] == "非菜") {
@@ -252,6 +257,7 @@ Page({
     }
   },
 
+  //上传美食图片
   upload: function(e) {
     this.data.gram = 0;
     this.data.selectIndex = '-1';
@@ -278,6 +284,8 @@ Page({
       success: function(res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
+
+
         let base64 = wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], 'base64')
         //上传操作
         wx.uploadFile({
@@ -412,25 +420,12 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
     var that = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        that.setData({
-          windowHeight: res.windowHeight
-        });
-      }
-    });
     var date = util.formatTime(new Date());
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
@@ -443,10 +438,17 @@ Page({
         }
       }
       this.setData({
-        selectList: foodlist,
-        windowHeight: this.data.windowHeight
+        selectList: foodlist
       })
     }
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
   /**

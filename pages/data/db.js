@@ -8,6 +8,16 @@ var food = [{
         "image": "../images/staplefood.jpg"
       },
       {
+        "name": "红薯",
+        "calorie": "86",
+        "image": "../images/vegetable.jpg"
+      },
+      {
+        "name": "紫薯",
+        "calorie": "82",
+        "image": "../images/vegetable.jpg"
+      },
+      {
         "name": "白米饭",
         "calorie": "126",
         "image": "../images/staplefood.jpg"
@@ -164,16 +174,6 @@ var food = [{
       {
         "name": "豆腐皮",
         "calorie": "395",
-        "image": "../images/vegetable.jpg"
-      },
-      {
-        "name": "红薯",
-        "calorie": "86",
-        "image": "../images/vegetable.jpg"
-      },
-      {
-        "name": "紫薯",
-        "calorie": "82",
         "image": "../images/vegetable.jpg"
       },
       {
@@ -397,17 +397,25 @@ var food = [{
     ]
   },
   {
-    "type": "其他",
+    "type": "小吃",
     "foodlist": [{
-        "name": "冰糖",
-        "calorie": "397",
-        "image": "../images/other.jpg"
-      },
-      {
         "name": "薯片",
         "calorie": "550",
         "image": "../images/other.jpg"
+      }, {
+        "name": "山核桃仁",
+        "calorie": "2493",
+        "image": "../images/other.jpg"
+      }, {
+        "name": "风干牛肉",
+        "calorie": "1154",
+        "image": "../images/other.jpg"
+      },  {
+        "name": "冰糖",
+        "calorie": "397",
+        "image": "../images/other.jpg"
       }
+
     ]
   }
 ]

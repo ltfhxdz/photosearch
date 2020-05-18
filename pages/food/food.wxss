@@ -111,6 +111,8 @@ page {
   margin-bottom: 100rpx;
 }
 
+
+
 .item5 {
   margin-top: 100rpx;
   display: flex;
@@ -119,6 +121,17 @@ page {
 }
 
 
+.item6 {
+  display: flex;
+  flex-direction: row;
+  background-color: AliceBlue;
+}
+
+.clean {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 100rpx;
+}
 .order-item {
   margin-top: 10rpx;
   width: 100%;

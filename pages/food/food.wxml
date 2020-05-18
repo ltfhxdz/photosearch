@@ -37,7 +37,7 @@
 </view>
 
 
-<scroll-view scroll-y="{{isScroll}}" class="item4" style='height:{{windowHeight}}px'>
+<scroll-view scroll-y="{{isScroll}}" class="item4">
   <block wx:key="item" wx:for="{{selectList}}">
     <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
       <image src="{{item.image}}" class="image" mode='aspectFit'></image>
@@ -56,11 +56,17 @@
 </scroll-view>
 
 <modal hidden="{{hiddenModal1}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm">
-  <input type='number' placeholder="默认100" focus bindinput="gramInput" />
+  <view class="item6">
+    <input type='number' value="{{gramValue}}" maxlength="6" placeholder="请输入" focus bindinput="gramInput" />
+    <image src='../images/x.png' bindtap='clean' class="clean"></image>
+  </view>
 </modal>
 
 <modal hidden="{{hiddenModal2}}" title="请输入多少克" bindcancel="gramCancel2" bindconfirm="gramConfirm2">
-  <input type='number' placeholder="默认100" focus bindinput="gramInput2" />
+  <view class="item6">
+    <input type='number' value="{{gram2Value}}" maxlength="6" placeholder="请输入" focus bindinput="gramInput2" />
+    <image src='../images/x.png' bindtap='clean2' class="clean"></image>
+  </view>
 </modal>
 
 
