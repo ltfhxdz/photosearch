@@ -1,0 +1,42 @@
+page {
+  background: rgb(236, 234, 253);
+}
+
+.flex-wrp-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1%;
+}
+
+.item {
+  padding: 25rpx;
+  position: relative;
+}
+
+.item-left {
+  flex: 1; /* 重要 */
+  align-items: center;
+}
+
+.item-right {
+  position: relative;
+  align-items: center;
+}
+
+.icon-left {
+  width: 25px;
+  height: 25px;
+}
+
+.icon-right {
+  width: 20px;
+  height: 20px;
+}
+
+.line{
+  margin: 0 auto;
+  height: 1px;
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: #D8D8D8;
+}

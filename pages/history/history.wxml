@@ -1,0 +1,31 @@
+<picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
+  <view class='flex-wrp-row item'>
+    <view class='item-left flex-wrp-row'>
+      <image src='../images/f1.png' class='icon-left' mode='aspectFit'></image>
+      <text decode="{{true}}">&nbsp;&nbsp;2020年5月</text>
+    </view>
+
+    <view class='item-right flex-wrp-row'>
+      <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+    </view>
+  </view>
+</picker>
+<view class="line"></view>
+
+<scroll-view scroll-y="{{isScroll}}" class="item4">
+  <block wx:key="item" wx:for="{{dayList}}">
+    <picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
+      <view class='flex-wrp-row item'>
+        <view class='item-left flex-wrp-row'>
+          <image src='../images/f1.png' class='icon-left' mode='aspectFit'></image>
+          <text decode="{{true}}">&nbsp;&nbsp;{{item}}日</text>
+        </view>
+
+        <view class='item-right flex-wrp-row'>
+          <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+        </view>
+      </view>
+    </picker>
+    <view class="line"></view>
+  </block>
+</scroll-view>

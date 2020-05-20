@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/history/history",
     "pages/food/food",
     "pages/analyse/analyse"
   ],
@@ -22,6 +23,10 @@
       {
         "pagePath": "pages/analyse/analyse",
         "text": "分析"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史"
       }
     ]
   },

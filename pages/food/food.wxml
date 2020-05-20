@@ -17,7 +17,7 @@
     </view>
     <view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="select" id="{{item.id}}">
       <view class="item">
-        <image src="{{item.image}}" class="image" mode='aspectFit'></image>
+        <image src="{{item.image}}" class="image" mode='aspectFill'></image>
 
         <view class="desc">
           <view>{{item.name}}</view>
@@ -40,7 +40,7 @@
 <scroll-view scroll-y="{{isScroll}}" class="item4">
   <block wx:key="item" wx:for="{{selectList}}">
     <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
-      <image src="{{item.image}}" class="image" mode='aspectFit'></image>
+      <image src="{{item.image}}" class="image" mode='aspectFill'></image>
       <view class="desc">
         <view>{{item.name}}</view>
         <view class="calorie">
