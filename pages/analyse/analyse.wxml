@@ -22,7 +22,7 @@
 
       <view class='item-right flex-wrp-row'>
         <text decode="{{true}}">{{gender}}&nbsp;&nbsp;</text>
-        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+        <text decode="{{true}}" class="x6">&gt;</text>
       </view>
     </view>
   </picker>
@@ -36,7 +36,7 @@
       </view>
       <view class='item-right flex-wrp-row'>
         <text decode="{{true}}">{{age}}&nbsp;&nbsp;</text>
-        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+        <text decode="{{true}}" class="x6">&gt;</text>
       </view>
     </view>
   </picker>
@@ -50,7 +50,7 @@
       </view>
       <view class='item-right flex-wrp-row'>
         <text decode="{{true}}">{{height}}&nbsp;&nbsp;</text>
-        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+        <text decode="{{true}}" class="x6">&gt;</text>
       </view>
     </view>
   </picker>
@@ -64,7 +64,7 @@
       </view>
       <view class='item-right flex-wrp-row'>
         <text decode="{{true}}">{{weight}}&nbsp;&nbsp;</text>
-        <image src='../images/arrow.jpg' class='icon-right' mode='aspectFit'></image>
+        <text decode="{{true}}" class="x6">&gt;</text>
       </view>
     </view>
   </picker>
@@ -115,10 +115,10 @@
       <text>今日饮食热量</text>
       <text>{{todayCalorie}}千卡</text>
     </view>
-    <view>
-      <image src='../images/xiaoyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie < basic}}"></image>
-      <image src='../images/dengyuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie == basic}}"></image>
-      <image src='../images/dayuhao.jpg' class='x3' mode='aspectFit' wx:if="{{todayCalorie > basic}}"></image>
+    <view class="x3">
+      <text decode="{{true}}" wx:if="{{todayCalorie < basic}}">&lt;</text>
+      <text decode="{{true}}" wx:if="{{todayCalorie == basic}}">=</text>
+      <text decode="{{true}}" wx:if="{{todayCalorie > basic}}">&gt;</text>
     </view>
     <view class="x2">
       <text>基础代谢率</text>

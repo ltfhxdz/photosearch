@@ -95,15 +95,27 @@ page {
   background: rgb(236, 234, 253);
 }
 
+.item {
+  padding: 25rpx;
+  position: relative;
+}
 .item1 {
   display: flex;
   flex-direction: row;
   margin-top: 20rpx;
 }
 
-.item {
-  padding: 25rpx;
-  position: relative;
+.item2 {
+  margin-top: 10rpx;
+  margin-bottom: 100rpx;
+}
+
+.item3 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: AliceBlue;
+  text-align: center;
 }
 
 .item-left {
@@ -134,9 +146,6 @@ page {
   background-color: #D8D8D8;
 }
 
-.item4 {
-  margin-bottom: 100rpx;
-}
 
 .order-item {
   margin-top: 10rpx;

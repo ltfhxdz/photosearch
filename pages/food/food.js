@@ -431,7 +431,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that = this;
     var date = util.formatTime(new Date());
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');

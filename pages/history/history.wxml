@@ -1,11 +1,11 @@
 <!-- 日历年月 -->
 <view class='calendar_title flex_nowrap'>
   <view class='icon' bindtap='lastMonth'>
-    <image src='../images/zuojiantou.png' />
+    <text decode="{{true}}">&nbsp;&nbsp;&lt;</text>
   </view>
   <view>{{year}}年{{month}}月</view>
   <view class='icon' bindtap='nextMonth'>
-    <image src='../images/youjiantou.png' />
+    <text decode="{{true}}">&gt;</text>
   </view>
 </view>
 
@@ -28,11 +28,7 @@
   </view>
 </view>
 
-<view class='item1'>
-  <text decode="{{true}}">&nbsp;&nbsp;{{selectTime}}</text>
-</view>
-
-<scroll-view scroll-y="true" class="item4">
+<scroll-view scroll-y="true" class="item2">
   <block wx:key="item" wx:for="{{selectList}}">
     <view data-index='{{index}}' class="order-item">
       <image src="{{item.image}}" class="image" mode='aspectFill'></image>
@@ -47,3 +43,7 @@
     <view class="line"></view>
   </block>
 </scroll-view>
+
+<view class="item3">
+  <button bindtap="init">初始化</button>
+</view>

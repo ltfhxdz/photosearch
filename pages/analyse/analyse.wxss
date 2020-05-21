@@ -84,9 +84,7 @@ page{
   text-align: center;
 }
 .x3{
-  width: 30px;
-  height: 30px;
-  margin-top:10rpx;
+  font-size: 32px;
 }
 .x4{
   display: flex;
@@ -102,6 +100,10 @@ page{
   margin-top:100rpx;
   margin-left: 60rpx;
   margin-bottom:20rpx;
+}
+
+.x6{
+  font-size: 24px;
 }
 
 .item2 {
