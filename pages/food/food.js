@@ -16,8 +16,10 @@ Page({
     calorieIndex: [0, 0],
     delBtnWidth: 160,
     calorieSelectFood: [],
-    gramValue:'',
-    gram2Value: ''
+    gramValue: '',
+    gram2Value: '',
+    gramFlag: false,
+    gram2Flag: false
   },
 
   /**
@@ -66,7 +68,7 @@ Page({
   },
 
   //卡路里：选择食品之后的确定按钮触发
-  calorieMethod: function (e) {
+  calorieMethod: function(e) {
     let selectIndex = e.detail.value;
     let foodList = fooddb.foodList;
     let oneIndex = selectIndex[0];
@@ -77,6 +79,8 @@ Page({
 
     this.setData({
       hiddenModal2: false,
+      gram2Value: '',
+      gram2Flag: false,
       calorieSelectFood: calorieSelectFood
     })
   },
@@ -125,16 +129,26 @@ Page({
 
   //美食按钮，输入卡路里
   gramInput: function(e) {
-    this.setData({
-      gram: e.detail.value
-    })
+    if (e.detail.value.length == 0) {
+      this.clean();
+    } else {
+      this.setData({
+        gram: e.detail.value,
+        gramFlag: true
+      })
+    }
   },
 
   //卡路里按钮，输入卡路里
   gramInput2: function(e) {
-    this.setData({
-      gram2: e.detail.value
-    })
+    if (e.detail.value.length == 0) {
+      this.clean2();
+    } else {
+      this.setData({
+        gram2: e.detail.value,
+        gram2Flag: true
+      })
+    }
   },
 
   //美食按钮，取消卡路里输入
@@ -150,18 +164,17 @@ Page({
     let foodbak = [];
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
-    console.log("breakfast1=" + breakfast);
     if (breakfast != "") {
       let food = JSON.parse(breakfast);
       for (let x in food) {
         if (date == food[x]["date"]) {
           foodlist = food[x]["foodlist"];
-        }else{
+        } else {
           foodbak.push(food[x]);
         }
       }
     }
-    console.log("foodbak=" + JSON.stringify(foodbak));
+
     let selectitem = this.data.list[this.data.selectIndex];
     let gram = this.data.gram;
     selectitem['gram'] = gram;
@@ -174,7 +187,6 @@ Page({
     foodbak.push(item);
 
     breakfast = JSON.stringify(foodbak);
-    console.log("breakfast2=" + breakfast);
     wx.setStorageSync('breakfast', breakfast);
 
     this.setData({
@@ -184,15 +196,17 @@ Page({
     })
   },
 
-  clean: function () {
+  clean: function() {
     this.setData({
-      gramValue: ''
+      gramValue: '',
+      gramFlag: false
     })
   },
 
-  clean2: function () {
+  clean2: function() {
     this.setData({
-      gram2Value: ''
+      gram2Value: '',
+      gram2Flag: false
     })
   },
 
@@ -214,7 +228,7 @@ Page({
       for (let x in food) {
         if (date == food[x]["date"]) {
           foodlist = food[x]["foodlist"];
-        }else{
+        } else {
           foodbak.push(food[x]);
         }
       }
@@ -254,7 +268,9 @@ Page({
     } else {
       this.data.selectIndex = index;
       this.setData({
-        hiddenModal1: false
+        hiddenModal1: false,
+        gramValue: '',
+        gramFlag:false
       });
     }
   },
@@ -289,7 +305,7 @@ Page({
 
         wx.saveImageToPhotosAlbum({
           filePath: tempFilePaths,
-          success(res) { 
+          success(res) {
             console.log("save success");
           }
         })
@@ -454,7 +470,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
