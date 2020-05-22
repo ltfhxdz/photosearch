@@ -129,5 +129,5 @@
 </view>
 
 <view class="item3">
-  <text class="item2">饮食热量 小于 (基础代谢率) = 快速减肥</text>
+  <text class="item2">(饮食热量) 小于 (基础代谢率) = 快速减肥</text>
 </view>

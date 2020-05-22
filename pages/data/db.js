@@ -91,11 +91,6 @@ var food = [{
         "name": "肠粉",
         "calorie": "110",
         "image": "../images/staplefood.jpg"
-      },
-      {
-        "name": "饼干",
-        "calorie": "546",
-        "image": "../images/staplefood.jpg"
       }
     ]
   },
@@ -402,7 +397,13 @@ var food = [{
         "name": "薯片",
         "calorie": "550",
         "image": "../images/other.jpg"
-      }, {
+      }, 
+      {
+        "name": "饼干",
+        "calorie": "546",
+        "image": "../images/staplefood.jpg"
+      },
+      {
         "name": "山核桃仁",
         "calorie": "2493",
         "image": "../images/other.jpg"

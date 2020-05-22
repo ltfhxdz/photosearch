@@ -147,18 +147,21 @@ Page({
   //美食按钮，提交卡路里输入
   gramConfirm: function(e) {
     var date = util.formatTime(new Date());
+    let foodbak = [];
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
+    console.log("breakfast1=" + breakfast);
     if (breakfast != "") {
       let food = JSON.parse(breakfast);
       for (let x in food) {
         if (date == food[x]["date"]) {
           foodlist = food[x]["foodlist"];
-          break;
+        }else{
+          foodbak.push(food[x]);
         }
       }
     }
-
+    console.log("foodbak=" + JSON.stringify(foodbak));
     let selectitem = this.data.list[this.data.selectIndex];
     let gram = this.data.gram;
     selectitem['gram'] = gram;
@@ -168,11 +171,10 @@ Page({
     let item = {};
     item["date"] = date;
     item["foodlist"] = foodlist;
+    foodbak.push(item);
 
-    let food = [];
-    food.push(item);
-
-    breakfast = JSON.stringify(food);
+    breakfast = JSON.stringify(foodbak);
+    console.log("breakfast2=" + breakfast);
     wx.setStorageSync('breakfast', breakfast);
 
     this.setData({
@@ -203,7 +205,8 @@ Page({
 
   //卡路里热量提交
   gramConfirm2: function(e) {
-    var date = util.formatTime(new Date());
+    let date = util.formatTime(new Date());
+    let foodbak = [];
     let foodlist = [];
     let breakfast = wx.getStorageSync('breakfast');
     if (breakfast != "") {
@@ -211,7 +214,8 @@ Page({
       for (let x in food) {
         if (date == food[x]["date"]) {
           foodlist = food[x]["foodlist"];
-          break;
+        }else{
+          foodbak.push(food[x]);
         }
       }
     }
@@ -230,10 +234,8 @@ Page({
     item["date"] = date;
     item["foodlist"] = foodlist;
 
-    let food = [];
-    food.push(item);
-
-    breakfast = JSON.stringify(food);
+    foodbak.push(item);
+    breakfast = JSON.stringify(foodbak);
     wx.setStorageSync('breakfast', breakfast);
 
     this.setData({

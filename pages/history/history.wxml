@@ -1,11 +1,11 @@
 <!-- 日历年月 -->
 <view class='calendar_title flex_nowrap'>
   <view class='icon' bindtap='lastMonth'>
-    <text decode="{{true}}">&nbsp;&nbsp;&lt;</text>
+    <text decode="{{true}}">&nbsp;&nbsp;&lt;&nbsp;&nbsp;</text>
   </view>
   <view>{{year}}年{{month}}月</view>
   <view class='icon' bindtap='nextMonth'>
-    <text decode="{{true}}">&gt;</text>
+    <text decode="{{true}}">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</text>
   </view>
 </view>
 
@@ -43,7 +43,3 @@
     <view class="line"></view>
   </block>
 </scroll-view>
-
-<view class="item3">
-  <button bindtap="init">初始化</button>
-</view>
