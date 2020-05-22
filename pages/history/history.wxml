@@ -28,7 +28,7 @@
   </view>
 </view>
 
-<scroll-view scroll-y="true" class="item2">
+<scroll-view scroll-y="true" class="item5">
   <block wx:key="item" wx:for="{{selectList}}">
     <view data-index='{{index}}' class="order-item">
       <image src="{{item.image}}" class="image" mode='aspectFill'></image>
@@ -43,3 +43,7 @@
     <view class="line"></view>
   </block>
 </scroll-view>
+
+<view class="item3">
+  <text class="item2">不管住嘴，减肥是徒劳的</text>
+</view>

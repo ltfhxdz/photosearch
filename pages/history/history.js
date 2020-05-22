@@ -142,20 +142,7 @@ Page({
   },
 
   onLoad: function() {
-    let date = util.formatTime(new Date());
-    let foodlist = this.getFoodList(date);
-    let now = new Date();
-    let year = now.getFullYear();
-    let month = now.getMonth() + 1;
-    let day = now.getDate();
-    this.dateInit();
-    let isToday = '' + year + this.formatDay(month) + this.formatDay(day);
-    this.setData({
-      year: year,
-      month: month,
-      isToday: isToday,
-      selectList: foodlist
-    })
+ 
   },
 
   dateInit: function(setYear, setMonth) {
@@ -254,7 +241,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let date = util.formatTime(new Date());
+    let foodlist = this.getFoodList(date);
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+    this.dateInit();
+    let isToday = '' + year + this.formatDay(month) + this.formatDay(day);
+    this.setData({
+      year: year,
+      month: month,
+      isToday: isToday,
+      selectList: foodlist
+    })
   },
 
   getFoodList(date) {

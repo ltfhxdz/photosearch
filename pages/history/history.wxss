@@ -105,9 +105,10 @@ page {
   margin-top: 20rpx;
 }
 
+
 .item2 {
-  margin-top: 10rpx;
-  margin-bottom: 100rpx;
+  width: 100%;
+  margin-top: 5%;
 }
 
 .item3 {
@@ -116,6 +117,11 @@ page {
   width: 100%;
   background-color: AliceBlue;
   text-align: center;
+}
+
+.item5 {
+  margin-top: 10rpx;
+  margin-bottom: 100rpx;
 }
 
 .item-left {
