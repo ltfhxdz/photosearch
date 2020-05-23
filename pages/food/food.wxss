@@ -125,6 +125,7 @@ page {
   display: flex;
   flex-direction: row;
   background-color: AliceBlue;
+  height: 50rpx;
 }
 
 .clean {

@@ -58,14 +58,18 @@
 <modal hidden="{{hiddenModal1}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm">
   <view class="item6">
     <input type='number' value="{{gramValue}}" maxlength="6" placeholder="请输入" focus bindinput="gramInput" />
-    <image src='../images/x.png' bindtap='clean' class="clean"  wx:if="{{gramFlag}}"></image>
+    <view bindtap='clean' wx:if="{{gramFlag}}">
+      <image src='../images/x.png' class="clean"></image>
+    </view>
   </view>
 </modal>
 
 <modal hidden="{{hiddenModal2}}" title="请输入多少克" bindcancel="gramCancel2" bindconfirm="gramConfirm2">
   <view class="item6">
     <input type='number' value="{{gram2Value}}" maxlength="6" placeholder="请输入" focus bindinput="gramInput2" />
-    <image src='../images/x.png' bindtap='clean2' class="clean"  wx:if="{{gram2Flag}}"></image>
+    <view bindtap='clean2' wx:if="{{gram2Flag}}">
+      <image src='../images/x.png' class="clean"></image>
+    </view>
   </view>
 </modal>
 

@@ -1,0 +1,11 @@
+测试机型
+  matepro 20
+  mate9
+  mate10
+  iPhone7plus
+
+iphone不显示日历
+iPhone7plus扫描二维码，第一次会弹出输入键盘
+
+
+

@@ -154,7 +154,7 @@ Page({
     let nextYear = 0;
     let month = setMonth || now.getMonth(); //没有+1方便后面计算当月总天数
     let nextMonth = (month + 1) > 11 ? 1 : (month + 1);
-    let startWeek = new Date(year + ',' + (month + 1) + ',' + 1).getDay(); //目标月1号对应的星期
+    let startWeek = new Date(year + '/' + (month + 1) + '/' + 1).getDay(); //目标月1号对应的星期
 
     let dayNums = new Date(year, nextMonth, 0).getDate(); //获取目标月有多少天
     let obj = {};
