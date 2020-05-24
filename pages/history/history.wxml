@@ -31,7 +31,6 @@
 <scroll-view scroll-y="true" class="item5">
   <block wx:key="item" wx:for="{{selectList}}">
     <view data-index='{{index}}' class="order-item">
-      <image src="{{item.image}}" class="image" mode='aspectFill'></image>
       <view class="desc">
         <view>{{item.name}}</view>
         <view class="calorie">
@@ -45,6 +44,5 @@
 </scroll-view>
 
 <view class="item3">
-  <button bindtap="init">初始化</button>
   <text class="item2">不管住嘴，减肥是徒劳的</text>
 </view>
