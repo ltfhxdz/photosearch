@@ -1,9 +1,13 @@
+page {
+  background: black;
+}
+
 .calendar_title {
   width: 70%;
   margin: 10rpx auto;
   justify-content: space-between;
-  font-size: 20pt;
-  color: rgb(68, 6, 6);
+  font-size: 16pt;
+  color: white;
 }
 
 .flex_nowrap{
@@ -22,9 +26,8 @@
 .calendar {
   width: 100%;
   margin-top: 10rpx;
-  background: #fff;
-  border-bottom-right-radius: 20rpx;
-  border-bottom-left-radius: 20rpx;
+  background:black;
+  color: white;
   padding: 0 0 20rpx;
   font-family: FZZhunYuan-M02S;
 }
@@ -38,7 +41,7 @@
 .header>view {
   display: inline-block;
   width: 14.285%;
-  color: #666;
+  color: white;
   font-size: 30rpx;
   text-align: center;
   border-bottom: 1px solid #d0d0d0;
@@ -70,7 +73,7 @@
   position: relative;
   display: inline-block;
   width: 14.285%;
-  color: #666;
+  color: white;
   text-align: center;
   vertical-align: middle;
 }
@@ -85,15 +88,11 @@
   width: 60rpx;
   border-radius: 50%;
   text-align: center;
-  color: #fff;
+  color: white;
   background-color: #f93;
   margin: 0 auto;
 }
 
-
-page {
-  background: rgb(236, 234, 253);
-}
 
 .item {
   padding: 25rpx;
@@ -115,7 +114,7 @@ page {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: AliceBlue;
+  background-color: cyan;
   text-align: center;
 }
 
@@ -168,6 +167,7 @@ page {
 .desc {
   margin-left: 20px;
   line-height: 30px;
+  color: white;
 }
 
 .calorie {

@@ -1,5 +1,5 @@
 page {
-  background: rgb(236, 234, 253);
+  background: black;
 }
 
 .mask {
@@ -60,6 +60,7 @@ page {
 .desc {
   margin-left: 20px;
   line-height: 30px;
+  color: white;
 }
 
 .calorie {
@@ -102,7 +103,7 @@ page {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: AliceBlue;
+  background-color: cyan;
   text-align: center;
 }
 
@@ -126,6 +127,10 @@ page {
   flex-direction: row;
   background-color: AliceBlue;
   height: 50rpx;
+}
+
+.item7 {
+  color: black;
 }
 
 .clean {

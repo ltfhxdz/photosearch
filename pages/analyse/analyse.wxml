@@ -10,7 +10,6 @@
   </view>
 </view>
 
-<view class="line"></view>
 <view wx:if="{{isExpanding}}">
 
   <picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
@@ -81,35 +80,10 @@
     </view>
   </view>
   <view class="line"></view>
-
-  <view wx:if="{{showAnalyse}}">
-    <view class='flex-wrp-row item'>
-      <view class='item-left flex-wrp-row'>
-        <image src='../images/f5.png' class='icon-left' mode='aspectFit'></image>
-        <text decode="{{true}}">&nbsp;&nbsp;静态消耗1分钟的热量：</text>
-      </view>
-      <view class='item-right flex-wrp-row'>
-        <text decode="{{true}}">{{minuteCalorie}}千卡&nbsp;&nbsp;</text>
-        <image class='icon-right'></image>
-      </view>
-    </view>
-    <view class="line"></view>
-
-    <view class='flex-wrp-row item'>
-      <view class='item-left flex-wrp-row'>
-        <image src='../images/f5.png' class='icon-left' mode='aspectFit'></image>
-        <text decode="{{true}}">&nbsp;&nbsp;静态消耗1克脂肪的时间：</text>
-      </view>
-      <view class='item-right flex-wrp-row'>
-        <text decode="{{true}}">{{fatTime}}分钟&nbsp;&nbsp;</text>
-        <image class='icon-right'></image>
-      </view>
-    </view>
-    <view class="line"></view>
-  </view>
 </view>
 
-<view wx:if="{{showAnalyse}}">
+<view  class="x7" wx:if="{{showAnalyse}}">
+  <view class="line"></view>
   <view class="x4">
     <view class="x1">
       <text>今日饮食热量</text>
