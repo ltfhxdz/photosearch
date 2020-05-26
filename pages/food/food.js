@@ -1,6 +1,7 @@
 var util = require('../../utils/util.js');
 var foodTool = require('../../utils/food.js');
 var fooddb = require('/../data/db.js');
+var fooddb2 = require('/../data/db2.js');
 
 Page({
 
@@ -8,6 +9,7 @@ Page({
     show: false,
     hiddenModal1: true,
     hiddenModal2: true,
+    selectcHiddenModal: true,
     selectIndex: '-1',
     gram: 0,
     gram2: 0,
@@ -21,6 +23,71 @@ Page({
     gramFlag: false,
     gram2Flag: false
   },
+
+  calorie2: function() {
+    console.log("enter calorie2");
+    this.setData({
+      selectValue: '',
+      selectcHiddenModal: false,
+      selectFlag: false
+    })
+  },
+
+  selectCancel: function() {
+    console.log("enter selectCancel");
+    this.setData({
+      selectValue: '',
+      selectcHiddenModal: true,
+      selectFlag: false
+    });
+  },
+
+  selectConfirm: function() {
+    console.log("enter selectConfirm");
+
+    let searchWord = this.data.select2;
+    console.log(searchWord);
+    let foodList2 = fooddb2.foodList2;
+    let item;
+    let newList = [];
+    for (let x in foodList2) {
+      item = foodList2[x];
+      if (item.name.indexOf(searchWord) != -1) {
+        newList.push(item);
+      }
+    }
+    console.log(newList);
+
+    this.setData({
+      selectcHiddenModal: true,
+      list: newList,
+      show: true,
+      probabilityFlag:false
+    });
+
+  },
+
+  selectInput: function(e) {
+    console.log("enter selectInput");
+
+    if (e.detail.value.length == 0) {
+      this.selectcClean();
+    } else {
+      this.setData({
+        select2: e.detail.value,
+        selectFlag: true
+      })
+    }
+  },
+
+  selectcClean: function() {
+    console.log("enter selectcClean");
+    this.setData({
+      selectValue: '',
+      selectFlag: false
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -270,7 +337,7 @@ Page({
       this.setData({
         hiddenModal1: false,
         gramValue: '',
-        gramFlag:false
+        gramFlag: false
       });
     }
   },
@@ -341,9 +408,11 @@ Page({
                 }
               }
             }
+            console.log(newList);
             that.setData({
               list: newList,
-              show: true
+              show: true,
+              probabilityFlag: true
             })
           }
         })

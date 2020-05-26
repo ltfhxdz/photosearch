@@ -1,4 +1,4 @@
-[{
+var food2 = [{
   "name": "白薯(白心)",
   "calorie": "104",
   "image": "../images/staplefood.jpg"
@@ -3471,3 +3471,9 @@
   "calorie": "618",
   "image": "../images/pickle.jpg"
 }]
+
+
+// 定义数据出口
+module.exports = {
+  foodList2: food2
+}

@@ -3,6 +3,9 @@
     <text bindtap="upload">美食</text>
   </view>
   <view class="item1">
+    <text bindtap="calorie2">卡路里2</text>
+  </view>
+  <view class="item1">
     <picker mode="multiSelector" bindchange="calorieMethod" bindcolumnchange="calorieColumnChange" value="{{calorieIndex}}" range="{{calorieArray}}">
       <text bindtap="calorie">卡路里</text>
     </picker>
@@ -23,7 +26,7 @@
           <view class="item7">{{item.name}}</view>
           <view class="calorie">
             <view>卡路里：{{item.calorie}}千卡/100克</view>
-            <view class="probability">相似度：{{item.probability}}</view>
+            <view class="probability"  wx:if="{{probabilityFlag}}">相似度：{{item.probability}}</view>
           </view>
         </view>
       </view>
@@ -73,6 +76,14 @@
   </view>
 </modal>
 
+<modal hidden="{{selectcHiddenModal}}" title="查询" bindcancel="selectCancel" bindconfirm="selectConfirm">
+  <view class="item6">
+    <input type='text' value="{{selectValue}}" maxlength="20" placeholder="请输入食品名称"  bindinput="selectInput" />
+    <view bindtap='selectcClean' wx:if="{{selectFlag}}">
+      <image src='../images/x.png' class="clean"></image>
+    </view>
+  </view>
+</modal>
 
 <view class="item3">
   <text class="item2">吃美食，还要瘦</text>
