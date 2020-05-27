@@ -1,31 +1,22 @@
 var util = require('../../utils/util.js');
 var foodTool = require('../../utils/food.js');
 var fooddb = require('/../data/db.js');
-var fooddb2 = require('/../data/db2.js');
 
 Page({
-
   data: {
     show: false,
     hiddenModal1: true,
-    hiddenModal2: true,
     selectcHiddenModal: true,
     selectIndex: '-1',
     gram: 0,
-    gram2: 0,
     list: [],
-    calorieArray: [],
-    calorieIndex: [0, 0],
     delBtnWidth: 160,
     calorieSelectFood: [],
     gramValue: '',
-    gram2Value: '',
-    gramFlag: false,
-    gram2Flag: false
+    gramFlag: false
   },
 
-  calorie2: function() {
-    console.log("enter calorie2");
+  calorie: function() {
     this.setData({
       selectValue: '',
       selectcHiddenModal: false,
@@ -34,7 +25,6 @@ Page({
   },
 
   selectCancel: function() {
-    console.log("enter selectCancel");
     this.setData({
       selectValue: '',
       selectcHiddenModal: true,
@@ -43,20 +33,16 @@ Page({
   },
 
   selectConfirm: function() {
-    console.log("enter selectConfirm");
-
-    let searchWord = this.data.select2;
-    console.log(searchWord);
-    let foodList2 = fooddb2.foodList2;
+    let searchWord = this.data.searchWord;
+    let foodList = fooddb.foodList;
     let item;
     let newList = [];
-    for (let x in foodList2) {
-      item = foodList2[x];
+    for (let x in foodList) {
+      item = foodList[x];
       if (item.name.indexOf(searchWord) != -1) {
         newList.push(item);
       }
     }
-    console.log(newList);
 
     this.setData({
       selectcHiddenModal: true,
@@ -68,20 +54,17 @@ Page({
   },
 
   selectInput: function(e) {
-    console.log("enter selectInput");
-
     if (e.detail.value.length == 0) {
       this.selectcClean();
     } else {
       this.setData({
-        select2: e.detail.value,
+        searchWord: e.detail.value,
         selectFlag: true
       })
     }
   },
 
   selectcClean: function() {
-    console.log("enter selectcClean");
     this.setData({
       selectValue: '',
       selectFlag: false
@@ -95,103 +78,6 @@ Page({
   onLoad: function(options) {
     //控制存储大小，超过90%，删除100条记录
     foodTool.deleteStorage("breakfast");
-    //初始化卡路里
-    this.initCalorie();
-  },
-
-  //点击卡路里按钮
-  calorie: function(e) {
-    this.data.gram2 = 0;
-  },
-
-  //查询db，得到卡路里数组
-  getCalorieArray(index) {
-    let foodList = fooddb.foodList;
-
-    let typeArray = [];
-    for (let x in foodList) {
-      typeArray.push(foodList[x]["type"]);
-    }
-
-    let nameArray = [];
-    let calorieString = '';
-    for (let x in foodList[index]["foodlist"]) {
-      calorieString = foodList[index]["foodlist"][x]["name"] + "(" + foodList[index]["foodlist"][x]["calorie"] + "千卡/100克)"
-      nameArray.push(calorieString);
-    }
-
-    let calorieArray = [];
-    calorieArray.push(typeArray);
-    calorieArray.push(nameArray);
-    return calorieArray;
-  },
-
-
-  //初始化卡路里
-  initCalorie() {
-    this.setData({
-      calorieArray: this.getCalorieArray(0)
-    })
-  },
-
-  //卡路里：选择食品之后的确定按钮触发
-  calorieMethod: function(e) {
-    let selectIndex = e.detail.value;
-    let foodList = fooddb.foodList;
-    let oneIndex = selectIndex[0];
-    let twoIndex = selectIndex[1];
-    let oneList = foodList[oneIndex];
-    let twoList = oneList["foodlist"];
-    let calorieSelectFood = twoList[twoIndex];
-
-    this.setData({
-      hiddenModal2: false,
-      gram2Value: '',
-      gram2Flag: false,
-      calorieSelectFood: calorieSelectFood
-    })
-  },
-
-  //改变卡路里picker
-  calorieColumnChange: function(e) {
-    if (e.detail.column == 0) { //第1列
-      if (e.detail.value == 0) {
-        this.setData({
-          calorieArray: this.getCalorieArray(0),
-          calorieIndex: [0, 0]
-        })
-      } else if (e.detail.value == 1) {
-        this.setData({
-          calorieArray: this.getCalorieArray(1),
-          calorieIndex: [1, 0]
-        })
-      } else if (e.detail.value == 2) {
-        this.setData({
-          calorieArray: this.getCalorieArray(2),
-          calorieIndex: [2, 0]
-        })
-      } else if (e.detail.value == 3) {
-        this.setData({
-          calorieArray: this.getCalorieArray(3),
-          calorieIndex: [3, 0]
-        })
-      } else if (e.detail.value == 4) {
-        this.setData({
-          calorieArray: this.getCalorieArray(4),
-          calorieIndex: [4, 0]
-        })
-      } else if (e.detail.value == 5) {
-        this.setData({
-          calorieArray: this.getCalorieArray(5),
-          calorieIndex: [5, 0]
-        })
-      } else if (e.detail.value == 6) {
-        this.setData({
-          calorieArray: this.getCalorieArray(6),
-          calorieIndex: [6, 0]
-        })
-      }
-    }
   },
 
   //美食按钮，输入卡路里
@@ -202,18 +88,6 @@ Page({
       this.setData({
         gram: e.detail.value,
         gramFlag: true
-      })
-    }
-  },
-
-  //卡路里按钮，输入卡路里
-  gramInput2: function(e) {
-    if (e.detail.value.length == 0) {
-      this.clean2();
-    } else {
-      this.setData({
-        gram2: e.detail.value,
-        gram2Flag: true
       })
     }
   },
@@ -268,62 +142,6 @@ Page({
       gramValue: '',
       gramFlag: false
     })
-  },
-
-  clean2: function() {
-    this.setData({
-      gram2Value: '',
-      gram2Flag: false
-    })
-  },
-
-  //卡路里按钮，取消卡路里输入
-  gramCancel2: function(e) {
-    this.setData({
-      hiddenModal2: true
-    });
-  },
-
-  //卡路里热量提交
-  gramConfirm2: function(e) {
-    let date = util.formatTime(new Date());
-    let foodbak = [];
-    let foodlist = [];
-    let breakfast = wx.getStorageSync('breakfast');
-    if (breakfast != "") {
-      let food = JSON.parse(breakfast);
-      for (let x in food) {
-        if (date == food[x]["date"]) {
-          foodlist = food[x]["foodlist"];
-        } else {
-          foodbak.push(food[x]);
-        }
-      }
-    }
-
-    let gram2 = this.data.gram2;
-    let selectitem = {};
-    selectitem['name'] = this.data.calorieSelectFood["name"];
-    selectitem['image'] = this.data.calorieSelectFood["image"];
-    selectitem['gram'] = gram2;
-    selectitem['calorie'] = (this.data.calorieSelectFood["calorie"] * gram2 / 100).toFixed();
-    selectitem['has_calorie'] = true;
-    selectitem['right'] = 0;
-    foodlist.push(selectitem);
-
-    let item = {};
-    item["date"] = date;
-    item["foodlist"] = foodlist;
-
-    foodbak.push(item);
-    breakfast = JSON.stringify(foodbak);
-    wx.setStorageSync('breakfast', breakfast);
-
-    this.setData({
-      hiddenModal2: true,
-      selectList: foodlist
-    });
-
   },
 
   //美食按钮，选择美食后，触发的方法
@@ -408,7 +226,6 @@ Page({
                 }
               }
             }
-            console.log(newList);
             that.setData({
               list: newList,
               show: true,
