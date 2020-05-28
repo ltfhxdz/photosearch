@@ -1,6 +1,4 @@
-page {
-  background: black;
-}
+
 
 .calendar_title {
   width: 70%;

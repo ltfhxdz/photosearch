@@ -13,10 +13,12 @@ Page({
     delBtnWidth: 160,
     calorieSelectFood: [],
     gramValue: '',
-    gramFlag: false
+    gramFlag: false,
+    nofindFlag:false
   },
 
-  calorie: function() {
+  calorieMethod: function() {
+    // console.log("enter calorieMethod");
     this.setData({
       selectValue: '',
       selectcHiddenModal: false,
@@ -33,6 +35,7 @@ Page({
   },
 
   selectConfirm: function() {
+    // console.log("enter selectConfirm");
     let searchWord = this.data.searchWord;
     let foodList = fooddb.foodList;
     let item;
@@ -42,6 +45,21 @@ Page({
       if (item.name.indexOf(searchWord) != -1) {
         newList.push(item);
       }
+    }
+
+    console.log("newList=" + JSON.stringify(newList));
+    if (newList.length == 0){
+      let nofindItem = {};
+      nofindItem["name"] = "抱歉，我用了洪荒之力，还是没有找到";
+      nofindItem["image"] = "../images/cry.jpg";
+      newList.push(nofindItem);
+      this.setData({
+        nofindFlag: false
+      });
+    }else{
+      this.setData({
+        nofindFlag: true
+      });
     }
 
     this.setData({
@@ -55,7 +73,7 @@ Page({
 
   selectInput: function(e) {
     if (e.detail.value.length == 0) {
-      this.selectcClean();
+      this.selectClean();
     } else {
       this.setData({
         searchWord: e.detail.value,
@@ -64,7 +82,7 @@ Page({
     }
   },
 
-  selectcClean: function() {
+  selectClean: function() {
     this.setData({
       selectValue: '',
       selectFlag: false
@@ -101,6 +119,7 @@ Page({
 
   //美食按钮，提交卡路里输入
   gramConfirm: function(e) {
+    // console.log("enter gramConfirm");
     var date = util.formatTime(new Date());
     let foodbak = [];
     let foodlist = [];
@@ -116,10 +135,12 @@ Page({
       }
     }
 
-    let selectitem = this.data.list[this.data.selectIndex];
+    let selectitem = {};
     let gram = this.data.gram;
+    selectitem['name'] = this.data.list[this.data.selectIndex].name;
     selectitem['gram'] = gram;
-    selectitem['calorie'] = (selectitem['calorie'] * gram / 100).toFixed();
+    selectitem['image'] = this.data.list[this.data.selectIndex].image;
+    selectitem['calorie'] = (this.data.list[this.data.selectIndex].calorie * gram / 100).toFixed();
     foodlist.push(selectitem);
 
     let item = {};
@@ -145,10 +166,11 @@ Page({
   },
 
   //美食按钮，选择美食后，触发的方法
-  select: function(e) {
+  selectMethod: function(e) {
+    console.log("enter selectMethod");
     let index = e.currentTarget.dataset.index;
     let selectitem = this.data.list[index];
-    if (selectitem["name"] == "非菜") {
+    if (selectitem["name"] == "非菜" || selectitem["name"] == "抱歉，我用了洪荒之力，还是没有找到" ) {
       this.cancel();
     } else {
       this.data.selectIndex = index;
@@ -220,9 +242,15 @@ Page({
               food['right'] = 0;
               if (food['has_calorie']) {
                 newList.push(food);
+                that.setData({
+                  nofindFlag: true
+                })
               } else {
                 if (food['name'] == "非菜") {
                   newList.push(food);
+                  that.setData({
+                    nofindFlag: false
+                  })
                 }
               }
             }

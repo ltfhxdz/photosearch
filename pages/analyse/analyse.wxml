@@ -83,7 +83,6 @@
 </view>
 
 <view  class="x7" wx:if="{{showAnalyse}}">
-  <view class="line"></view>
   <view class="x4">
     <view class="x1">
       <text>今日饮食热量</text>
