@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/food/food",
-    "pages/analyse/analyse",
-    "pages/history/history"
+    "pages/history/history",
+    "pages/analyse/analyse"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: row;
   margin-top: 1%;
-  color: white;
+  color: black;
 }
  
 .item {
@@ -90,7 +90,7 @@
   justify-content: space-around;
   margin-top:20rpx;
   margin-bottom:20rpx;
-  color: cyan;
+  color: black;
 }
 
 .x5{
