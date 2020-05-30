@@ -5,16 +5,15 @@
     "pages/history/history"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000000",
     "navigationBarTitleText": "美食瘦",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#FFFFFF",
     "selectedColor": "#FFA500",
     "backgroundColor": "#000000",
-    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/food/food",

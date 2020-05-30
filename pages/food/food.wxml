@@ -11,7 +11,8 @@
 <view class='modalBg' wx:if="{{show}}">
   <view class="modalDlg">
     <view class='title'>
-      <text>选择</text>
+      <text  wx:if="{{nofindFlag}}">选择</text>
+      <text decode="{{true}}"  wx:if="{{! nofindFlag}}">&nbsp;&nbsp;</text>
     </view>
 
     <view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="selectMethod" id="{{item.id}}">

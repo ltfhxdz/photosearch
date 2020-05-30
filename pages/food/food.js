@@ -50,7 +50,7 @@ Page({
     console.log("newList=" + JSON.stringify(newList));
     if (newList.length == 0){
       let nofindItem = {};
-      nofindItem["name"] = "抱歉，我用了洪荒之力，还是没有找到";
+      nofindItem["name"] = "抱歉，我用了洪荒之力都没有找到";
       nofindItem["image"] = "../images/cry.jpg";
       newList.push(nofindItem);
       this.setData({
@@ -170,7 +170,7 @@ Page({
     console.log("enter selectMethod");
     let index = e.currentTarget.dataset.index;
     let selectitem = this.data.list[index];
-    if (selectitem["name"] == "非菜" || selectitem["name"] == "抱歉，我用了洪荒之力，还是没有找到" ) {
+    if (selectitem["name"] == "非菜" || selectitem["name"] == "抱歉，我用了洪荒之力都没有找到" ) {
       this.cancel();
     } else {
       this.data.selectIndex = index;
