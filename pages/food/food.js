@@ -47,7 +47,7 @@ Page({
       }
     }
 
-    console.log("newList=" + JSON.stringify(newList));
+    // console.log("newList=" + JSON.stringify(newList));
     if (newList.length == 0){
       let nofindItem = {};
       nofindItem["name"] = "抱歉，我用了洪荒之力都没有找到";
@@ -167,7 +167,7 @@ Page({
 
   //美食按钮，选择美食后，触发的方法
   selectMethod: function(e) {
-    console.log("enter selectMethod");
+    // console.log("enter selectMethod");
     let index = e.currentTarget.dataset.index;
     let selectitem = this.data.list[index];
     if (selectitem["name"] == "非菜" || selectitem["name"] == "抱歉，我用了洪荒之力都没有找到" ) {

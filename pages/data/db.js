@@ -548,7 +548,7 @@ var food = [{
     "name": "刀豆",
     "calorie": "35",
     "image": "../images/vegetable.jpg"
-  }, {
+  },{
     "name": "冬瓜",
     "calorie": "11",
     "image": "../images/vegetable.jpg"
@@ -1069,6 +1069,10 @@ var food = [{
     "calorie": "286",
     "image": "../images/fruit.jpg"
   }, {
+    "name": "臻味天天坚果",
+    "calorie": "2511",
+    "image": "../images/fruit.jpg"
+  },{
     "name": "山核桃仁",
     "calorie": "2493",
     "image": "../images/fruit.jpg"
@@ -3378,6 +3382,14 @@ var food = [{
     "calorie": "228",
     "image": "../images/drink.jpg"
   }, {
+    "name": "梦龙迷你雪糕(香草)",
+    "calorie": "1414",
+    "image": "../images/drink.jpg"
+  }, , {
+    "name": "梦龙迷你雪糕(巧克力)",
+    "calorie": "1458",
+    "image": "../images/drink.jpg"
+  }, {
     "name": "白木耳",
     "calorie": "200",
     "image": "../images/mushroom.jpg"
@@ -3622,6 +3634,10 @@ var food = [{
     "calorie": "29",
     "image": "../images/pickle.jpg"
   }, {
+    "name": "乌江榨菜(微辣)",
+    "calorie": "230",
+    "image": "../images/pickle.jpg"
+  },{
     "name": "芝麻酱",
     "calorie": "618",
     "image": "../images/pickle.jpg"
