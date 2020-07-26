@@ -254,6 +254,7 @@ Page({
                 }
               }
             }
+            console.log(newList);
             that.setData({
               list: newList,
               show: true,
@@ -421,5 +422,12 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+    /**
+   * 允许用户右上角分享到朋友圈
+   */
+  onShareTimeline: function () {
+    title: '吃美食，还要瘦'
   }
 })

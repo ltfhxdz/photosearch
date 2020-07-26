@@ -270,6 +270,21 @@ Page({
       }
     }
     return foodlist;
+  },
+  
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  },
+
+    /**
+   * 允许用户右上角分享到朋友圈
+   */
+  onShareTimeline: function () {
+    title: '吃美食，还要瘦'
   }
+  
 
 })
