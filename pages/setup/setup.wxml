@@ -2,16 +2,9 @@
   <view class='item-left flex-wrp-row'>
     <open-data type="userNickName"></open-data>
   </view>
-  <view class='item-right flex-wrp-row'>
-    <view bindtap="open">{{isExpanding ? "收起" : "展开"}}
-    </view>
-    <image src='../images/down.jpg' class='icon-right' mode='aspectFit' wx:if="{{! isExpanding}}" bindtap="open"></image>
-    <image src='../images/up.jpg' class='icon-right' mode='aspectFit' wx:if="{{isExpanding}}" bindtap="open"></image>
-  </view>
 </view>
 
-<view wx:if="{{isExpanding}}">
-
+<view>
   <picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
     <view class='flex-wrp-row item'>
       <view class='item-left flex-wrp-row'>
@@ -82,25 +75,6 @@
   <view class="line"></view>
 </view>
 
-<view  class="x7" wx:if="{{showAnalyse}}">
-  <view class="x4">
-    <view class="x1">
-      <text>今日饮食热量</text>
-      <text>{{todayCalorie}}千卡</text>
-    </view>
-    <view class="x3">
-      <text decode="{{true}}" wx:if="{{todayCalorie < basic}}">&lt;</text>
-      <text decode="{{true}}" wx:if="{{todayCalorie == basic}}">=</text>
-      <text decode="{{true}}" wx:if="{{todayCalorie > basic}}">&gt;</text>
-    </view>
-    <view class="x2">
-      <text>基础代谢率</text>
-      <text>{{basic}}千卡</text>
-    </view>
-  </view>
-  <view class="line"></view>
-</view>
-
 <view class="item3">
-  <text class="item2">(饮食热量) 小于 (基础代谢率) = 快速减肥</text>
+  <text class="item2">不管住嘴，减肥是徒劳的</text>
 </view>

@@ -19,13 +19,6 @@ Page({
 
   },
 
-
-  open: function() {
-    this.setData({
-      isExpanding: !this.data.isExpanding
-    })
-  },
-
   heightMethod: function(e) {
     let heightArray = e.detail.value;
     let height = heightArray[0] * 10 + heightArray[1];
@@ -80,9 +73,6 @@ Page({
         basic = 661 + 9.6 * (weight / 2).toFixed() + 1.72 * height - 4.7 * age
       }
     }
-
-
-
 
     basic = basic.toFixed();
     wx.setStorageSync('basic', basic);
@@ -180,42 +170,7 @@ Page({
     //设置基础代谢
     this.setBasic();
 
-    let isExpanding = false;
-    if (wx.getStorageSync("basic") == 0) {
-      isExpanding = true;
-    }
-
-    var date = util.formatTime(new Date());
-    let foodlist = [];
-    let breakfast = wx.getStorageSync('breakfast');
-    if (breakfast != "") {
-      let food = JSON.parse(breakfast);
-      for (let x in food) {
-        if (date == food[x]["date"]) {
-          foodlist = food[x]["foodlist"];
-          break;
-        }
-      }
-    }
-
-    let todayCalorie = 0;
-    for (let x in foodlist) {
-      todayCalorie = todayCalorie + parseInt(foodlist[x]["calorie"]);
-    }
-
-    let basic = wx.getStorageSync('basic');
-    let showAnalyse = false;
-    let minuteCalorie = 0;
-    let fatTime = 0;
-    if (basic > 0) {
-      showAnalyse = true;
-      minuteCalorie = (basic / 1440).toFixed(2);
-      fatTime = (9 / (basic / 1440)).toFixed();
-    }
-
     this.setData({
-      todayCalorie: todayCalorie,
-      isExpanding: isExpanding,
       genderIndex: this.getGenderIndex(),
       ageIndex: this.getAgeIndex(),
       heightIndex: this.getHeightIndex(),
@@ -224,10 +179,7 @@ Page({
       age: wx.getStorageSync('age') + '岁',
       height: wx.getStorageSync('height') + '厘米',
       weight: wx.getStorageSync('weight') + '斤',
-      basic: wx.getStorageSync('basic'),
-      minuteCalorie: minuteCalorie,
-      fatTime: fatTime,
-      showAnalyse: showAnalyse
+      basic: wx.getStorageSync('basic')
     })
   },
 

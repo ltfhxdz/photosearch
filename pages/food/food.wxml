@@ -1,78 +1,176 @@
-<view class="item5">
-  <view class="item1">
-    <text bindtap="upload">美食</text>
-  </view>
-  <view class="item1">
-    <text bindtap="calorieMethod">卡路里</text>
-  </view>
+<view class="mask" style="{{basicShow?'z-index: 1;opacity:0.7':''}}"></view>
+<view class='modalBg' wx:if="{{basicShow}}">
+	<view class="modalDlg">
+		<view>
+			<view class="item8">
+				<view>
+					<text decode="{{true}}">基础代谢率的基本信息</text>
+				</view>
+			</view>
+
+			<picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">
+				<view class='flex-wrp-row item'>
+					<view class='item-left flex-wrp-row'>
+						<image src='../images/f1.png' class='icon-left' mode='aspectFit'></image>
+						<text decode="{{true}}">&nbsp;&nbsp;性别</text>
+					</view>
+
+					<view class='item-right flex-wrp-row'>
+						<text decode="{{true}}">{{gender}}&nbsp;&nbsp;</text>
+						<text decode="{{true}}" class="x6">&gt;</text>
+					</view>
+				</view>
+			</picker>
+			<view class="line"></view>
+
+			<picker mode="multiSelector" bindchange="ageMethod" value="{{ageIndex}}" range="{{ageArray}}">
+				<view class='flex-wrp-row item'>
+					<view class='item-left flex-wrp-row'>
+						<image src='../images/f2.png' class='icon-left' mode='aspectFit'></image>
+						<text decode="{{true}}">&nbsp;&nbsp;年龄</text>
+					</view>
+					<view class='item-right flex-wrp-row'>
+						<text decode="{{true}}">{{age}}&nbsp;&nbsp;</text>
+						<text decode="{{true}}" class="x6">&gt;</text>
+					</view>
+				</view>
+			</picker>
+			<view class="line"></view>
+
+			<picker mode="multiSelector" bindchange="heightMethod" value="{{heightIndex}}" range="{{heightArray}}">
+				<view class='flex-wrp-row item'>
+					<view class='item-left flex-wrp-row'>
+						<image src='../images/f3.png' class='icon-left' mode='aspectFit'></image>
+						<text decode="{{true}}">&nbsp;&nbsp;身高</text>
+					</view>
+					<view class='item-right flex-wrp-row'>
+						<text decode="{{true}}">{{height}}&nbsp;&nbsp;</text>
+						<text decode="{{true}}" class="x6">&gt;</text>
+					</view>
+				</view>
+			</picker>
+			<view class="line"></view>
+
+			<picker mode="multiSelector" bindchange="weightMethod" value="{{weightIndex}}" range="{{weightArray}}">
+				<view class='flex-wrp-row item'>
+					<view class='item-left flex-wrp-row'>
+						<image src='../images/f4.png' class='icon-left' mode='aspectFit'></image>
+						<text decode="{{true}}">&nbsp;&nbsp;体重</text>
+					</view>
+					<view class='item-right flex-wrp-row'>
+						<text decode="{{true}}">{{weight}}&nbsp;&nbsp;</text>
+						<text decode="{{true}}" class="x6">&gt;</text>
+					</view>
+				</view>
+			</picker>
+			<view class="line"></view>
+
+			<view class="item8" wx:if="{{goShow}}">
+				<view class="item9">
+					<text bindtap="go">开启美食瘦之旅</text>
+				</view>
+			</view>
+
+		</view>
+	</view>
+</view>
+
+
+
+<view class="item5" wx:if="{{!basicShow}}">
+	<view class="item1">
+		<text bindtap="upload">美食</text>
+	</view>
+	<view class="item1">
+		<text bindtap="calorieMethod">卡路里</text>
+	</view>
+</view>
+
+<view class="x7" wx:if="{{!basicShow}}">
+	<view class="x4">
+		<view class="x1">
+			<text>今日饮食热量</text>
+			<text>{{todayCalorie}}千卡</text>
+		</view>
+		<view class="x3">
+			<text decode="{{true}}" wx:if="{{todayCalorie < basic}}">&lt;</text>
+			<text decode="{{true}}" wx:if="{{todayCalorie == basic}}">=</text>
+			<text decode="{{true}}" wx:if="{{todayCalorie > basic}}">&gt;</text>
+		</view>
+		<view class="x2">
+			<text>基础代谢率</text>
+			<text>{{basic}}千卡</text>
+		</view>
+	</view>
+	<view class="line"></view>
 </view>
 
 <view class="mask" style="{{show?'z-index: 1;opacity:0.7':''}}"></view>
 <view class='modalBg' wx:if="{{show}}">
-  <view class="modalDlg">
-    <view class='title'>
-      <text  wx:if="{{nofindFlag}}">选择</text>
-      <text decode="{{true}}"  wx:if="{{! nofindFlag}}">&nbsp;&nbsp;</text>
-    </view>
+	<view class="modalDlg">
+		<view class='title'>
+			<text  wx:if="{{nofindFlag}}">选择</text>
+			<text decode="{{true}}"  wx:if="{{! nofindFlag}}">&nbsp;&nbsp;</text>
+		</view>
 
-    <view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="selectMethod" id="{{item.id}}">
-      <view class="item">
-        <image src="{{item.image}}" class="image" mode='aspectFill'></image>
+		<view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="selectMethod" id="{{item.id}}">
+			<view class="item">
+				<image src="{{item.image}}" class="image" mode='aspectFill'></image>
 
-        <view class="desc">
-          <view class="item7">{{item.name}}</view>
-          <view class="calorie" wx:if="{{nofindFlag}}">
-            <view>卡路里：{{item.calorie}}千卡/100克</view>
-            <view class="probability" wx:if="{{probabilityFlag}}">相似度：{{item.probability}}</view>
-          </view>
-        </view>
-      </view>
-      <view class="line"></view>
-    </view>
-    <view>
-      <button catchtap="cancel">取消</button>
-    </view>
+				<view class="desc">
+					<view class="item7">{{item.name}}</view>
+					<view class="calorie" wx:if="{{nofindFlag}}">
+						<view>卡路里：{{item.calorie}}千卡/100克</view>
+						<view class="probability" wx:if="{{probabilityFlag}}">相似度：{{item.probability}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="line"></view>
+		</view>
+		<view>
+			<button catchtap="cancel">取消</button>
+		</view>
 
-  </view>
+	</view>
 </view>
 
 
 <scroll-view scroll-y="{{isScroll}}" class="item4">
-  <block wx:key="item" wx:for="{{selectList}}">
-    <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
-      <image src="{{item.image}}" class="image" mode='aspectFill'></image>
-      <view class="desc">
-        <view>{{item.name}}</view>
-        <view class="calorie">
-          <view>卡路里：{{item.calorie}}千卡</view>
-          <view class="probability">{{item.gram}}克</view>
-        </view>
-      </view>
+	<block wx:key="item" wx:for="{{selectList}}">
+		<view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
+			<image src="{{item.image}}" class="image" mode='aspectFill'></image>
+			<view class="desc">
+				<view>{{item.name}}</view>
+				<view class="calorie">
+					<view>卡路里：{{item.calorie}}千卡</view>
+					<view class="probability">{{item.gram}}克</view>
+				</view>
+			</view>
 
-      <view class="remove" bindtap="deleteItem" data-index="{{index}}">删除 </view>
-    </view>
-    <view class="line"></view>
-  </block>
+			<view class="remove" bindtap="deleteItem" data-index="{{index}}">删除 </view>
+		</view>
+		<view class="line"></view>
+	</block>
 </scroll-view>
 
-<modal hidden="{{hiddenModal1}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm" >
-  <view class="item6">
-    <input type='number' cursor-spacing='100' value="{{gramValue}}" maxlength="6" placeholder="估算即可" bindinput="gramInput" />
-    <view bindtap='clean' wx:if="{{gramFlag}}">
-      <image src='../images/x.png' class="clean"></image>
-    </view>
-  </view>
+<modal hidden="{{hiddenModal1}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm">
+	<view class="item6">
+		<input type='number' cursor-spacing='100' value="{{gramValue}}" maxlength="6" placeholder="估算即可" bindinput="gramInput" />
+		<view bindtap='clean' wx:if="{{gramFlag}}">
+			<image src='../images/x.png' class="clean"></image>
+		</view>
+	</view>
 </modal>
 
 <modal hidden="{{selectcHiddenModal}}" title="查询" bindcancel="selectCancel" bindconfirm="selectConfirm">
-  <view class="item6">
-    <input type='text' cursor-spacing='100' value="{{selectValue}}" maxlength="20" placeholder="请输入食品名称" bindinput="selectInput" />
-    <view bindtap='selectClean' wx:if="{{selectFlag}}">
-      <image src='../images/x.png' class="clean"></image>
-    </view>
-  </view>
+	<view class="item6">
+		<input type='text' cursor-spacing='100' value="{{selectValue}}" maxlength="20" placeholder="请输入食品名称" bindinput="selectInput" />
+		<view bindtap='selectClean' wx:if="{{selectFlag}}">
+			<image src='../images/x.png' class="clean"></image>
+		</view>
+	</view>
 </modal>
 
 <view class="item3">
-  <text class="item2">吃美食，还要瘦</text>
+	<text class="item2">吃美食，还要瘦</text>
 </view>

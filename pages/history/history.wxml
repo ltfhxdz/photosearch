@@ -28,6 +28,24 @@
   </view>
 </view>
 
+<view  class="x7">
+  <view class="x4">
+    <view class="x1">
+      <text>当天饮食热量</text>
+      <text>{{todayCalorie}}千卡</text>
+    </view>
+    <view class="x3">
+      <text decode="{{true}}" wx:if="{{todayCalorie < basic}}">&lt;</text>
+      <text decode="{{true}}" wx:if="{{todayCalorie == basic}}">=</text>
+      <text decode="{{true}}" wx:if="{{todayCalorie > basic}}">&gt;</text>
+    </view>
+    <view class="x2">
+      <text>当天基础代谢率</text>
+      <text>{{basic}}千卡</text>
+    </view>
+  </view>
+</view>
+
 <scroll-view scroll-y="true" class="item5">
   <block wx:key="item" wx:for="{{selectList}}">
     <view data-index='{{index}}' class="order-item">
@@ -44,5 +62,5 @@
 </scroll-view>
 
 <view class="item3">
-  <text class="item2">不管住嘴，减肥是徒劳的</text>
+  <text class="item2">(饮食热量) 小于 (基础代谢率) = 快速减肥</text>
 </view>

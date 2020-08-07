@@ -2,7 +2,7 @@
   "pages": [
     "pages/food/food",
     "pages/history/history",
-    "pages/analyse/analyse"
+    "pages/setup/setup"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -17,15 +17,21 @@
     "list": [
       {
         "pagePath": "pages/food/food",
-        "text": "美食"
-      },
-      {
-        "pagePath": "pages/analyse/analyse",
-        "text": "分析"
+        "text": "美食",
+        "iconPath": "pages/images/food1.jpg",
+        "selectedIconPath": "pages/images/food1.jpg"
       },
       {
         "pagePath": "pages/history/history",
-        "text": "历史"
+        "text": "历史",
+        "iconPath": "pages/images/food2.jpg",
+        "selectedIconPath": "pages/images/food2.jpg"
+      },
+      {
+        "pagePath": "pages/setup/setup",
+        "text": "设置",
+        "iconPath": "pages/images/food3.jpg",
+        "selectedIconPath": "pages/images/food3.jpg"
       }
     ]
   },
