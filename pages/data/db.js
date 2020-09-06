@@ -469,6 +469,10 @@ var food = [{
     "calorie": "517",
     "image": "../images/staplefood.jpg"
   }, {
+    "name": "油麦菜",
+    "calorie": "8",
+    "image": "../images/vegetable.jpg"
+  }, {
     "name": "白菜苔",
     "calorie": "25",
     "image": "../images/vegetable.jpg"
@@ -548,7 +552,7 @@ var food = [{
     "name": "刀豆",
     "calorie": "35",
     "image": "../images/vegetable.jpg"
-  },{
+  }, {
     "name": "冬瓜",
     "calorie": "11",
     "image": "../images/vegetable.jpg"
@@ -1017,6 +1021,10 @@ var food = [{
     "calorie": "45",
     "image": "../images/fruit.jpg"
   }, {
+    "name": "榴莲",
+    "calorie": "147",
+    "image": "../images/fruit.jpg"
+  }, {
     "name": "福橘",
     "calorie": "45",
     "image": "../images/fruit.jpg"
@@ -1072,11 +1080,11 @@ var food = [{
     "name": "臻味天天坚果",
     "calorie": "2511",
     "image": "../images/fruit.jpg"
-  },{
+  }, {
     "name": "山核桃仁",
     "calorie": "2493",
     "image": "../images/fruit.jpg"
-  },{
+  }, {
     "name": "核桃(干)",
     "calorie": "627",
     "image": "../images/fruit.jpg"
@@ -1604,7 +1612,7 @@ var food = [{
     "name": "鸡肝",
     "calorie": "121",
     "image": "../images/meat.jpg"
-  },{
+  }, {
     "name": "鸡肝(肉鸡)",
     "calorie": "121",
     "image": "../images/meat.jpg"
@@ -1650,10 +1658,10 @@ var food = [{
     "name": "牛肉",
     "calorie": "125",
     "image": "../images/meat.jpg"
-  },{
-  "name": "风干牛肉",
+  }, {
+    "name": "风干牛肉",
     "calorie": "1154",
-  "image": "../images/meat.jpg"
+    "image": "../images/meat.jpg"
   }, {
     "name": "酱牛肉",
     "calorie": "246",
@@ -2156,7 +2164,7 @@ var food = [{
     "calorie": "324",
     "image": "../images/egg.jpg"
   },
- {
+  {
     "name": "鸡蛋(白皮)",
     "calorie": "138",
     "image": "../images/egg.jpg"
@@ -3637,7 +3645,7 @@ var food = [{
     "name": "乌江榨菜(微辣)",
     "calorie": "230",
     "image": "../images/pickle.jpg"
-  },{
+  }, {
     "name": "芝麻酱",
     "calorie": "618",
     "image": "../images/pickle.jpg"

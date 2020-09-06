@@ -6,6 +6,9 @@
 				<view>
 					<text decode="{{true}}">基础代谢率的基本信息</text>
 				</view>
+				<view class="item10">
+					<text bindtap="skip">跳过</text>
+				</view>
 			</view>
 
 			<picker bindchange="genderMethod" value="{genderIndex}}" range="{{genderArray}}">

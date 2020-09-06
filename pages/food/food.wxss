@@ -144,7 +144,6 @@
   justify-content: space-around;
 }
 
-
 .item9 {
   color: cyan;
   font-size: 40rpx;
@@ -157,6 +156,17 @@
   border-bottom-left-radius: 30rpx;
 }
 
+.item10 {
+  color: cyan;
+  font-size: 40rpx;
+  background-color: black;
+  width: 120rpx;
+  text-align: center;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+}
 .clean {
   width: 40rpx;
   height: 40rpx;

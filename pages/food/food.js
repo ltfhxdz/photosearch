@@ -4,6 +4,7 @@ var fooddb = require('/../data/db.js');
 
 Page({
   data: {
+    skipFlag: false,
     show: false,
     basicShow: false,
     hiddenModal1: true,
@@ -86,7 +87,7 @@ Page({
     return weightIndex;
   },
 
-  getGoShow:function(){
+  getGoShow: function () {
     let basic = wx.getStorageSync('basic');
 
     let goShow = false;
@@ -353,10 +354,9 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        access_token = res.data.access_token
+        access_token = res.data.access_token;
       }
     })
-
     wx.chooseImage({
       // 默认9张图片
       count: 1,
@@ -551,6 +551,13 @@ Page({
     })
   },
 
+  skip: function () {
+    this.setData({
+      basicShow: false,
+      skipFlag: true
+    })
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
@@ -569,7 +576,7 @@ Page({
     }
 
     let basic = wx.getStorageSync('basic');
-    if (basic == '') {
+    if (basic == '' && ! this.data.skipFlag) {
       basic = 0;
       this.setData({
         basicShow: true,
