@@ -108,12 +108,12 @@
 	<view class="line"></view>
 </view>
 
-<view class="mask" style="{{show?'z-index: 1;opacity:0.7':''}}"></view>
+<view class="mask" style="{{show?'z-index: 1;opacity:0.7':''}}" catchtap="cancel"></view>
 <view class='modalBg' wx:if="{{show}}">
 	<view class="modalDlg">
 		<view class='title'>
-			<text  wx:if="{{nofindFlag}}">选择</text>
-			<text decode="{{true}}"  wx:if="{{! nofindFlag}}">&nbsp;&nbsp;</text>
+			<text wx:if="{{nofindFlag}}">选择</text>
+			<text decode="{{true}}" wx:if="{{! nofindFlag}}">&nbsp;&nbsp;</text>
 		</view>
 
 		<view wx:for="{{list}}" wx:key="key" data-index="{{index}}" catchtap="selectMethod" id="{{item.id}}">
@@ -140,7 +140,8 @@
 
 <scroll-view scroll-y="{{isScroll}}" class="item4">
 	<block wx:key="item" wx:for="{{selectList}}">
-		<view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" bindtouchend="drawEnd" style="right:{{item.right}}rpx">
+		<view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove"
+			bindtouchend="drawEnd" style="right:{{item.right}}rpx">
 			<image src="{{item.image}}" class="image" mode='aspectFill'></image>
 			<view class="desc">
 				<view>{{item.name}}</view>
@@ -158,18 +159,55 @@
 
 <modal hidden="{{hiddenModal1}}" title="请输入多少克" bindcancel="gramCancel" bindconfirm="gramConfirm">
 	<view class="item6">
-		<input type='number' cursor-spacing='100' value="{{gramValue}}" maxlength="6" placeholder="估算即可" bindinput="gramInput" />
+		<input type='number' cursor-spacing='100' value="{{gramValue}}" maxlength="6" placeholder="估算即可"
+			bindinput="gramInput" />
 		<view bindtap='clean' wx:if="{{gramFlag}}">
 			<image src='../images/x.png' class="clean"></image>
 		</view>
 	</view>
+	<view class="table">
+		<view class="tr">
+			<view class="td-1" catchtap="defaultGram" data-gram="10">10</view>
+			<view class="td-2" catchtap="defaultGram" data-gram="20">20</view>
+			<view class="td-3" catchtap="defaultGram" data-gram="30">30</view>
+			<view class="td-4" catchtap="defaultGram" data-gram="40">40</view>
+			<view class="td-5" catchtap="defaultGram" data-gram="50">50</view>
+		</view>
+		<view class="tr">
+			<view class="td-1" catchtap="defaultGram" data-gram="60">60</view>
+			<view class="td-2" catchtap="defaultGram" data-gram="70">70</view>
+			<view class="td-3" catchtap="defaultGram" data-gram="80">80</view>
+			<view class="td-4" catchtap="defaultGram" data-gram="90">90</view>
+			<view class="td-5" catchtap="defaultGram" data-gram="100">100</view>
+		</view>
+		<view class="tr">
+			<view class="td-1" catchtap="defaultGram" data-gram="150">150</view>
+			<view class="td-2" catchtap="defaultGram" data-gram="200">200</view>
+			<view class="td-3" catchtap="defaultGram" data-gram="250">250</view>
+			<view class="td-4" catchtap="defaultGram" data-gram="300">300</view>
+			<view class="td-5" catchtap="defaultGram" data-gram="500">500</view>
+		</view>
+	</view>
 </modal>
+
+
 
 <modal hidden="{{selectcHiddenModal}}" title="查询" bindcancel="selectCancel" bindconfirm="selectConfirm">
 	<view class="item6">
-		<input type='text' cursor-spacing='100' value="{{selectValue}}" maxlength="20" placeholder="请输入食品名称" bindinput="selectInput" />
+		<input type='text' cursor-spacing='100' value="{{selectValue}}" maxlength="20" placeholder="请输入食品名称"
+			bindinput="selectInput" />
 		<view bindtap='selectClean' wx:if="{{selectFlag}}">
 			<image src='../images/x.png' class="clean"></image>
+		</view>
+	</view>
+
+	<view class="table" wx:for="{{foodList}}" wx:key="id">
+		<view class="tr">
+			<view class="td-1" catchtap="defaultFood" data-food="{{item.food1}}">{{item.food1}}</view>
+			<view class="td-2" catchtap="defaultFood" data-food="{{item.food2}}">{{item.food2}}</view>
+			<view class="td-3" catchtap="defaultFood" data-food="{{item.food3}}">{{item.food3}}</view>
+			<view class="td-4" catchtap="defaultFood" data-food="{{item.food4}}">{{item.food4}}</view>
+			<view class="td-5" catchtap="defaultFood" data-food="{{item.food5}}">{{item.food5}}</view>
 		</view>
 	</view>
 </modal>

@@ -34,6 +34,22 @@ Page({
 
   },
 
+  defaultGram: function (e) {
+    this.setData({
+      gram: e.currentTarget.dataset.gram
+    })
+
+    this.gramConfirm(e);
+  },
+
+
+  defaultFood: function (e) {
+    this.setData({
+      searchWord: e.currentTarget.dataset.food
+    })
+
+    this.selectConfirm();
+  },
 
   getGenderIndex() {
     let genderIndex = 0;
@@ -179,10 +195,50 @@ Page({
 
 
   calorieMethod: function () {
+    let foodList = [];
+    let historyFood = wx.getStorageSync('historyFood');
+    if (historyFood != "") {
+      let historyList = JSON.parse(historyFood);
+      let historyMap;
+      for (let x in historyList) {
+        if (x % 5 == 0) {
+          historyMap = {};
+          foodList.push(historyMap);
+          if (typeof (historyList[x]) != "undefined") {
+            historyMap['food1'] = historyList[x];
+          }
+        }
+        if (x % 5 == 1) {
+          if (typeof (historyList[x]) != "undefined") {
+            historyMap['food2'] = historyList[x];
+          }
+        }
+
+        if (x % 5 == 2) {
+          if (typeof (historyList[x]) != "undefined") {
+            historyMap['food3'] = historyList[x];
+          }
+        }
+
+        if (x % 5 == 3) {
+          if (typeof (historyList[x]) != "undefined") {
+            historyMap['food4'] = historyList[x];
+          }
+        }
+
+        if (x % 5 == 4) {
+          if (typeof (historyList[x]) != "undefined") {
+            historyMap['food5'] = historyList[x];
+          }
+        }
+      }
+    }
+
     this.setData({
       selectValue: '',
       selectcHiddenModal: false,
-      selectFlag: false
+      selectFlag: false,
+      foodList: foodList
     })
   },
 
@@ -194,8 +250,50 @@ Page({
     });
   },
 
+  setHistoryFood: function (searchWord) {
+    let historyFood = wx.getStorageSync('historyFood');
+    if (historyFood == "") {
+      let historyList = [];
+      historyList.push(searchWord);
+      wx.setStorageSync('historyFood', JSON.stringify(historyList));
+    } else {
+      let historyList = JSON.parse(historyFood);
+      let flag = false;
+      let index = -1;
+      for (let x in historyList) {
+        if (historyList[x] == searchWord) {
+          index = x;
+          flag = true;
+          break;
+        }
+      }
+
+      if (flag) {
+        //找到，删除后，放在第一个
+        historyList.splice(index, 1);
+        historyList.unshift(searchWord);
+        wx.setStorageSync('historyFood', JSON.stringify(historyList));
+      } else {
+        //没有找到
+        if (historyList.length < 10) {
+          historyList.unshift(searchWord);
+          wx.setStorageSync('historyFood', JSON.stringify(historyList));
+        } else {
+          //删除最后一个，放在最前面一个
+          historyList.splice(9, 1);
+          historyList.unshift(searchWord);
+          wx.setStorageSync('historyFood', JSON.stringify(historyList));
+        }
+      }
+    }
+  },
+
   selectConfirm: function () {
     let searchWord = this.data.searchWord;
+
+    //添加到用户的历史食品中
+    this.setHistoryFood(searchWord);
+
     let foodList = fooddb.foodList;
     let item;
     let newList = [];
@@ -371,7 +469,7 @@ Page({
         wx.saveImageToPhotosAlbum({
           filePath: tempFilePaths,
           success(res) {
-            console.log("save success");
+            console.warn("save success");
           }
         })
 
@@ -576,7 +674,7 @@ Page({
     }
 
     let basic = wx.getStorageSync('basic');
-    if (basic == '' && ! this.data.skipFlag) {
+    if (basic == '' && !this.data.skipFlag) {
       basic = 0;
       this.setData({
         basicShow: true,

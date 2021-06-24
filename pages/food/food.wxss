@@ -1,4 +1,3 @@
-
 .mask {
   width: 100%;
   height: 100%;
@@ -167,11 +166,13 @@
   border-bottom-right-radius: 30rpx;
   border-bottom-left-radius: 30rpx;
 }
+
 .clean {
   width: 40rpx;
   height: 40rpx;
   margin-left: 100rpx;
 }
+
 .order-item {
   margin-top: 10rpx;
   width: 100%;
@@ -192,33 +193,36 @@
   align-items: center;
 }
 
-.x1{
+.x1 {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-.x2{
+
+.x2 {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-.x3{
+
+.x3 {
   font-size: 32px;
 }
-.x4{
+
+.x4 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   color: black;
 }
 
-.x7{
-  margin-top:40rpx;
+.x7 {
+  margin-top: 40rpx;
   background-color: rgb(187, 245, 245);
 }
 
 
-.line{
+.line {
   margin: 0 auto;
   height: 1px;
   margin-left: 40px;
@@ -232,43 +236,44 @@
   margin-top: 1%;
   color: black;
 }
- 
+
 .item {
   padding: 25rpx;
   position: relative;
 
 }
- 
+
 .item-left {
-   flex: 1; /* 重要 */
-   align-items:center;
-}
- 
-.item-right {
-  position: relative;
-  align-items:center;
+  flex: 1;
+  /* 重要 */
+  align-items: center;
 }
 
-.icon-left{
+.item-right {
+  position: relative;
+  align-items: center;
+}
+
+.icon-left {
   width: 25px;
   height: 25px;
 }
 
-.icon-right{
+.icon-right {
   width: 20px;
   height: 20px;
 }
 
 
-.section__title{
+.section__title {
   margin-bottom: 20rpx;
 }
 
-.section{
+.section {
   margin: 50rpx 0;
   font-size: 30rpx;
 }
- 
+
 
 .desc-left {
   margin-left: 20px;
@@ -278,4 +283,57 @@
 .desc-right {
   margin-right: 20px;
   line-height: 30px;
+}
+
+.table {
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.tr {
+  display: flex;
+  justify-content: center;
+  height: 70rpx;
+  align-items: center;
+}
+
+.td-1 {
+  width: 20%;
+  justify-content: center;
+  display: flex;
+  height: 70rpx;
+  align-items: center;
+}
+
+
+.td-2 {
+  width: 20%;
+  justify-content: center;
+  display: flex;
+  height: 70rpx;
+  align-items: center;
+}
+
+.td-3 {
+  width: 20%;
+  justify-content: center;
+  display: flex;
+  height: 70rpx;
+  align-items: center;
+}
+
+.td-4 {
+  width: 20%;
+  justify-content: center;
+  display: flex;
+  height: 70rpx;
+  align-items: center;
+}
+
+.td-5 {
+  width: 20%;
+  justify-content: center;
+  display: flex;
+  height: 70rpx;
+  align-items: center;
 }
